@@ -5,6 +5,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --branco: #EEEEEE;
+  --branco-2: #efe9e9;
+  --cinza: #686D76;
+  --preto-claro: #373A40;
+  --preto-escuro: #1E1E1E;
+  --laranja: #DC5F00;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,4 +24,12 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-filme {
+  color: #ededed;
+  background-color: var(--preto-escuro);
+  width: 375px;
+  height: 162px;
+  border-radius: 5px;
 }
