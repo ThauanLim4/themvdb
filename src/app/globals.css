@@ -31,5 +31,7 @@ body {
   background-color: var(--preto-escuro);
   width: 375px;
   height: 162px;
+  min-width: 375px;
+  min-height: 162px;
   border-radius: 5px;
 }
