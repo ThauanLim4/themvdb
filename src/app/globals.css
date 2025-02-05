@@ -29,9 +29,9 @@ body {
 .container-filme {
   color: #ededed;
   background-color: var(--preto-escuro);
-  width: 375px;
+  width: 300px;
   height: 162px;
-  min-width: 375px;
+  min-width: 300px;
   min-height: 162px;
   border-radius: 5px;
 }
@@ -44,4 +44,13 @@ body {
   min-width: 225px;
   min-height: 425px;
   border-radius: 5px 5px 0px 0px;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, and Opera */
 }
