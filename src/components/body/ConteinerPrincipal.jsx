@@ -8,12 +8,8 @@ import "swiper/css/effect-fade";
 
 import { GetByGenre, getPopularMovies, GetTrendingMovies, GetTrendingPeople, GetTrendingTv } from '@/utils/api';
 import React, { useState, useEffect } from 'react';
-import { ComponenteFilmesParaMobile } from './componentesPrincipais/filmesPopulares/FilmesMoveis';
-import { ComponenteFilmesParaPc } from './componentesPrincipais/filmesPopulares/FilmesPc';
-import { ComponenteGeneros, ComponenteGenerosPc } from './componentesPrincipais/generos/Generos';
-import { ComponenteParaSeriesEmAltaMobile } from "./componentesPrincipais/seriesEmAlta/SeriesEmAltaMobile";
-import { ComponenteSeriesEmAltaPc } from "./componentesPrincipais/seriesEmAlta/SeriesEmAltaPc";
-import { ComponenteDeFilmes } from "./componentesPrincipais/Filmes/ComponenteFilmes";
+import { ComponenteDeFilmes } from "./componentesPrincipais/ComponentePadraoParaFilmes/ComponenteFilmes";
+import { ComponenteGeneros, ComponenteGenerosDeFilmes, ComponenteGenerosPc } from './componentesPrincipais/ComponentePadraoParageneros/Generos';
 
 
 register();
@@ -58,34 +54,23 @@ export const ComponentePrincipal = () => {
             {/* Esta sessão é a sessão principal da página inicial. Aqui contém os filmes mais populares. */}
 
             <section>
-                <div>
-                    <ComponenteDeFilmes valor={filmesPopulares} nomeDaSessao="Mais Populares" />
-                </div>
+                <ComponenteDeFilmes valor={filmesPopulares} nomeDaSessao="Mais Populares" />
             </section>
 
             {/* Esta é a sessão onde contém os filmes divididos por gênero. */}
 
-            <section>
-                <div className="max-sm:hidden max-md:hidden">
-                    <ComponenteGenerosPc valor={filmesPorGenero} />
-                </div>
 
-                <div className="hidden max-sm:block max-md:block">
-                    <ComponenteGeneros valor={filmesPorGenero} />
-                </div>
+            <section>
+                <ComponenteGenerosDeFilmes valor={filmesPorGenero} />
             </section>
 
             <section>
-                <div >
-                    <ComponenteDeFilmes valor={filmesEmAlta} nomeDaSessao={"Filmes em alta da semana"} />
-                </div>
+                <ComponenteDeFilmes valor={filmesEmAlta} nomeDaSessao={"Filmes em alta da semana"} />
             </section>
 
             {/* Esta sessão é a que contém as séries em alta da semana. */}
             <section>
-                <div >
-                    <ComponenteDeFilmes valor={seriesEmAlta} nomeDaSessao={"Séries em alta da semana"} />
-                </div>
+                <ComponenteDeFilmes valor={seriesEmAlta} nomeDaSessao={"Séries em alta da semana"} />
 
             </section>
         </div>
