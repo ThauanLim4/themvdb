@@ -20,6 +20,11 @@ export default {
       gridTemplateColumns: {
         "colunas1/0.5": "0.5fr 1fr",
       },
+      gridTemplateRows: {
+        "linhas0.5": "repeat(4, 0.5fr)",
+        "linhas0.5/1": "1fr 0.5fr",
+        "linhas0.3/1/0.5/0.5": "0.3fr 0.5fr 0.5fr 0.5fr",
+      },
     },
   },
   plugins: [],

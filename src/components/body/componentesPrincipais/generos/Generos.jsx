@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import '../../../css/custom-swiper.css';
+import '@/css/custom-swiper.css';
 import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa';
 
 
@@ -12,7 +12,7 @@ export const ComponenteGeneros = ({ valor }) => {
             <div className="flex gap-3 justify-start overflow-x-auto py-5 min-w-full hide-scrollbar">
                 {valor.map((genero) => {
                     return (
-                        <Link href={''}>
+                        <Link key={genero.id} href={''}>
                             <div className="bg-laranja flex-nowrap py-2 rounded-lg my-5 flex items-center justify-center min-w-36">
                                 <h3 className="text-black font-semibold flex">{genero.name}</h3>
                             </div>

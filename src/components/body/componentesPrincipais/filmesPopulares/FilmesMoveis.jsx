@@ -5,7 +5,7 @@ import { IoIosAdd } from 'react-icons/io';
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-export const ComponenteFilmesParaMobile = ({ valor }) => {
+export const ComponenteFilmesParaMobile = ({ valor, nomeDaSessao }) => {
   const filmesPopulares = valor;
   const [slidesPerView, setSlidesPerView] = useState(2);
 
@@ -27,7 +27,7 @@ export const ComponenteFilmesParaMobile = ({ valor }) => {
 
   return (
     <section className="p-5 max-w-screen-2xl mx-auto relative">
-      <h2 className="text-2xl font-bold text-laranja">Mais Populares</h2>
+      <h2 className="text-2xl font-bold text-laranja">{nomeDaSessao}</h2>
       <div className="flex gap-3 justify-start overflow-x-auto py-5">
         {filmesPopulares.length > 0
           ? <Swiper

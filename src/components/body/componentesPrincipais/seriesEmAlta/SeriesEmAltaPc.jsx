@@ -4,10 +4,10 @@ import { FaChevronCircleLeft, FaChevronCircleRight, FaRegStar } from 'react-icon
 import { IoIosAdd } from 'react-icons/io';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import '../../../css/custom-swiper.css';
+import './../../../../css/custom-swiper.css';
 
-export const ComponenteFilmesParaPc = ({ valor }) => {
-    const filmesPopularesLista = valor;
+export const ComponenteSeriesEmAltaPc = ({ valor, nomeDaSessao }) => {
+    const seriesEmAltaLista = valor;
       const [slidesPerView, setSlidesPerView] = useState(5);
     
       useEffect(() => {
@@ -28,9 +28,9 @@ export const ComponenteFilmesParaPc = ({ valor }) => {
 
     return (
         <section className="p-5 max-w-screen-xl mx-auto">
-            <h2 className="text-2xl font-bold text-laranja">Mais Populares</h2>
+            <h2 className="text-2xl font-bold text-laranja">{nomeDaSessao}</h2>
             <div className="flex gap-3 justify-start overflow-x-auto py-5">
-                {filmesPopularesLista.length > 0 ? (
+                {seriesEmAltaLista.length > 0 ? (
                     <Swiper
                         slidesPerView={slidesPerView}
                         navigation={{
@@ -38,12 +38,12 @@ export const ComponenteFilmesParaPc = ({ valor }) => {
                             prevEl: '.swiper-button-prev',
                         }}
                     >
-                        {filmesPopularesLista.map((movie) => (
+                        {seriesEmAltaLista.map((movie) => (
                             <SwiperSlide key={movie.id}>
                                 <div className="container-filme-pc my-3 rounded-lg flex flex-col">
                                     <img
                                         src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-                                        alt={movie.title}
+                                        alt={movie.name}
                                         className="w-full h-full object-contain rounded-l-md rounded-r-md"
                                     />
                                     <div className="px-3 py-2 justify-center flex-col">
@@ -52,9 +52,9 @@ export const ComponenteFilmesParaPc = ({ valor }) => {
                                             <p>{movie.vote_average.toFixed(1)}</p>
                                         </div>
                                         <h2 className="text-xl text-laranja mb-3">
-                                            {movie.title.length > 25
-                                                ? movie.title.substring(0, 22) + '...'
-                                                : movie.title}
+                                            {movie.name.length > 25
+                                                ? movie.name.substring(0, 22) + '...'
+                                                : movie.name}
                                         </h2>
                                         <p className="max-h-12 overflow-hidden text-xs mb-3">
                                             {`${movie.overview.length > 100
