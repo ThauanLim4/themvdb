@@ -14,3 +14,9 @@
   .custom-swiper-button {
     color: #FFA500; /* Altere para a cor desejada */
 }
+
+.botão-swiper-menor {
+  font-size: 20px;
+    color: #FFA500;
+    background: transparent;
+}

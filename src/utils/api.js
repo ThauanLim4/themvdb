@@ -23,7 +23,6 @@ export async function GetTrendingMovies() {
     const BASE_URL = 'https://api.themoviedb.org/3';
     const response = await fetch(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}&language=pt-BR`);
     const data = await response.json();
-    console.log("Filmes em alta da semana", data);
     return data.results;	
 }
 
@@ -41,7 +40,6 @@ export async function GetTrendingPeople() {
     const BASE_URL = 'https://api.themoviedb.org/3';
     const response = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=pt-BR`);
     const data = await response.json();
-    console.log("Pessoas em alta da semana", data);
     return data.results;	
 }
 

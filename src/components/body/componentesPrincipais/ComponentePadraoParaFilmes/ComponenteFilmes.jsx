@@ -8,6 +8,7 @@ import './../../../../css/custom-swiper.css';
 import Link from 'next/link';
 
 export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
+    console.log("valor retornado: ", valor);
     const filmesPopularesLista = valor;
 
     return (
@@ -57,7 +58,7 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                                             <FaRegStar className="text-yellow-400" />
                                             <p>{movie.vote_average.toFixed(1)}</p>
                                         </div>
-                                        <Link href={`/filmes/${movie.id}`} className="text-lg text-laranja overflow-hidden whitespace-nowrap text-ellipsis">
+                                        <Link href={`/pages/detalhes?tm=${!movie.media_type ? 'movie' : 'tv'}&idt=${movie.id}`} className="text-lg text-laranja overflow-hidden whitespace-nowrap text-ellipsis">
                                             {movie.title || movie.name}
                                         </Link >
                                         <p className="max-h-12 overflow-hidden text-xs mb-3">
