@@ -3,14 +3,10 @@ import { useEffect, useState, useRef } from "react";
 import { IoPeopleSharp } from "react-icons/io5";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { ComponenteDeFilmes } from "@/components/body/componentesPrincipais/ComponentePadraoParaFilmes/ComponenteFilmes";
-import Link from "next/link";
-import { IoIosAdd } from "react-icons/io";
-import { GoInfo } from "react-icons/go";
-import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { ComponenteTitulosSemelhantes } from "@/components/body/componenteMaisInformacoes/semelhantes/ComponenteSemelhantes";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import '@/css/custom-swiper.css';
 
 
 
@@ -73,6 +69,7 @@ const PaginaDetalhadaDosItens = () => {
                     return (
                         <div key={index} className="flex flex-col">
                             <div className="flex flex-col mb-5">
+                                
                                 <div className="grid grid-cols-colunas1/0.5 max-sm:flex max-md:flex">
                                     <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} className="w-96 max-h-96 object-contain mx-auto" />
                                     {tituloVideos !== undefined && tituloVideos.length > 0 ? (
@@ -80,19 +77,36 @@ const PaginaDetalhadaDosItens = () => {
                                     ) : <span></span>}
                                 </div>
 
+                                <div className="flex flex-row items-center gap-5">
 
-                                <div className="flex flex-row mt-4 items-center gap-5 px-5">
+                                    <Swiper className="w-full max-w-screen-lg overflow-hidden"
+                                        breakpoints={{
+                                            300: {
+                                                slidesPerView: 2,
+                                                freeMode: true,
+                                                spaceBetween: 50
+                                            },
+                                            500: {
+                                                slidesPerView: 2,
+                                                spaceBetween: 10
+                                            },
+                                            660: {
+                                                slidesPerView: 3,
+                                                spaceBetween: 10
+                                            },
+                                            980: {
+                                                spaceBetween: 10,
+                                                slidesPerView: 4,
+                                            },
+                                        }}
 
-                                    <motion.div ref={carrossel} whileTap={{ cursor: "grabbing" }} className="w-full max-w-screen-lg overflow-hidden">
-                                        <motion.div
-                                            drag="x"
-                                            dragConstraints={{ right: 0, left: -carrosselLargura }}
-                                            className="flex flex-row mt-4 items-center gap-5 px-5 w-full">
-                                            {tituloImagens.backdrops.map((image, index) => (
+                                    >
+                                        {tituloImagens.backdrops.map((image, index) => (
+                                            <SwiperSlide key={index} className="flex flex-row mt-4 items-center gap-5 px-5 w-full">
                                                 <img src={`https://image.tmdb.org/t/p/w300${image.file_path}`} className="imagem-cartaz" key={index} />
-                                            ))}
-                                        </motion.div>
-                                    </motion.div>
+                                            </SwiperSlide>
+                                        ))}
+                                    </Swiper>
 
                                 </div>
 
@@ -174,7 +188,7 @@ const PaginaDetalhadaDosItens = () => {
 
                                 <div className="w-full max-w-screen-lg flex flex-col gap-3 my-5">
                                     <h2 className="text-2xl font-semibold text-laranja">Semelhantes</h2>
-                                    <ComponenteTitulosSemelhantes valor={titulosSemelhantes}/>
+                                    <ComponenteTitulosSemelhantes valor={titulosSemelhantes} />
                                 </div>
                             </div>
                         </div>
