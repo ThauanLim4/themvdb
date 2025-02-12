@@ -10,7 +10,8 @@ import '@/css/custom-swiper.css';
 
 export const ComponenteTitulosSemelhantes = ({ valor }) => {
     return (
-        <>
+        <div className="w-full max-w-screen-lg flex flex-col gap-3 my-5">
+            <h2 className="text-2xl font-semibold text-laranja">Semelhantes</h2>
             {valor.length > 0 ? (
                 <div className="flex justify-start overflow-x-auto py-5">
 
@@ -24,10 +25,10 @@ export const ComponenteTitulosSemelhantes = ({ valor }) => {
                         }}
                         breakpoints={{
                             300: {
-                                slidesPerView: 2,
+                                slidesPerView: 1,
                                 freeMode: true,
                             },
-                            500: {
+                            550: {
                                 slidesPerView: 2,
                                 spaceBetween: 10
                             },
@@ -46,18 +47,18 @@ export const ComponenteTitulosSemelhantes = ({ valor }) => {
                         </div>
                         {valor.map((movie, index) => (
                             <SwiperSlide key={movie.id}>
-                                <div className="bg-preto_escuro rounded-lg flex flex-col items-center h-full max-h-425">
+                                <div className={`max-sm:flex-row max-sm:max-h-36 flex flex-col w-full bg-preto_escuro rounded-lg h-full max-h-425`}>
                                     <img
                                         src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                                         alt={movie.title || movie.name}
-                                        className="imagem-cartaz"
+                                        className={`max-sm:object-fill max-sm:w-max max-sm:min-h-36 min-h-64 max-h-64 h-full w-full rounded-lg object-contain `}
                                     />
-                                    <div className="px-3 py-2 grid grid-rows-template-infos w-full h-full">
-                                        <div className="flex items-center gap-5">
+                                    <div className="px-3 py-2 grid max-sm:grid-rows-template-infos-mob grid-rows-template-infos w-full h-full">
+                                        <div className="flex items-center gap-5 max-sm:hidden">
                                             <FaRegStar className="text-yellow-400" />
                                             <p>{movie.vote_average.toFixed(1)}</p>
                                         </div>
-                                        <Link href={`/pages/detalhes?tm=${!movie.media_type ? 'movie' : 'tv'}&idt=${movie.id}`} className="text-lg text-laranja overflow-hidden whitespace-nowrap text-ellipsis">
+                                        <Link href={`/pages/detalhes?tm=${movie.media_type}&idt=${movie.id}`} className="text-lg text-laranja overflow-hidden whitespace-nowrap text-ellipsis">
                                             {movie.title || movie.name}
                                         </Link >
                                         <p className="max-h-12 overflow-hidden text-xs mb-3">
@@ -91,6 +92,6 @@ export const ComponenteTitulosSemelhantes = ({ valor }) => {
             ) : (
                 <p>Carregando...</p>
             )}
-        </>
+        </div>
     )
 }

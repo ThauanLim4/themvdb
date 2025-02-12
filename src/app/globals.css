@@ -63,6 +63,34 @@ body {
   max-width: 225px;
   max-height: 250px;
 }
+
+.item-filme-mobile {
+  display: flex;
+  max-height: 144px;
+  width: 100%;
+  background-color: var(--preto-escuro);
+  border-radius: 8px;
+}
+
+.item-filme-outros {
+  display: flex;
+  flex-direction: column;
+  max-height: 425px;
+  height: 100%;
+  width: 100%;
+  background-color: var(--preto-escuro);
+  border-radius: 8px;
+  max-width: 256px;
+}
+
+.imagem-cartaz-mobile {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  max-width: 225px;
+  max-height: 144px;
+}
+
 .hide-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */

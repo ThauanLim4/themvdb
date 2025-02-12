@@ -1,39 +1,26 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { IoPeopleSharp } from "react-icons/io5";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import { FaCircleUser } from "react-icons/fa6";
 import { ComponenteTitulosSemelhantes } from "@/components/body/componenteMaisInformacoes/semelhantes/ComponenteSemelhantes";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import '@/css/custom-swiper.css';
-
-
+import { AvaliacoesComponente } from "@/components/body/componenteMaisInformacoes/avaliacoes/AvaliacoesTitulo";
 
 const PaginaDetalhadaDosItens = () => {
     const [detalhesDoTitulo, setDetalhesDoTitulo] = useState([]);
     const [tituloImagens, setTituloImagens] = useState([]);
     const [tituloVideos, setTituloVideos] = useState([]);
     const [tituloAvaliacoes, setTituloAvaliacoes] = useState([]);
-    const [textoCompleto, setTextoCompleto] = useState(true);
     const [titulosSemelhantes, setTitulosSemelhantes] = useState([]);
+    const [idTitulo, setIdTitulo] = useState("");
+    console.log("idtitulo", idTitulo);
 
-    const carrossel = useRef();
-    const [carrosselLargura, setCarrosselLargura] = useState(0);
-
-    useEffect(() => {
-        console.log(carrossel.current?.scrollWidth, carrossel.current?.offsetWidth);
-        setCarrosselLargura(carrossel.current?.scrollWidth - carrossel.current?.offsetWidth);
-    }, [])
-
-
-
+    
     useEffect(() => {
         const tipoDaMidia = window.location.search.split('=')[1].split("&")[0];
         const id = window.location.search.split('=')[2];
-
-        console.log("midia retornada:", tipoDaMidia);
-        console.log("id retornado:", id);
         const pegarDetalhesDoTitulo = async () => {
             const API_KEY = '6cab2673c87af7cea093eb14c8a77328';
             const BASE_URL = 'https://api.themoviedb.org/3';
@@ -58,7 +45,7 @@ const PaginaDetalhadaDosItens = () => {
             console.log("semelhantes", dataSemelhantes);
         }
         pegarDetalhesDoTitulo();
-    }, []);
+    }, [idTitulo]);
 
     return (
         <div className="text-white max-w-screen-lg mx-auto p-5">
@@ -73,13 +60,15 @@ const PaginaDetalhadaDosItens = () => {
                                 <div className="grid grid-cols-colunas1/0.5 max-sm:flex max-md:flex">
                                     <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} className="w-96 max-h-96 object-contain mx-auto" />
                                     {tituloVideos !== undefined && tituloVideos.length > 0 ? (
-                                        <iframe src={`https://www.youtube.com/embed/${tituloVideos[0]?.key}`} className="w-full h-full outline-none max-sm:hidden max-md:hidden" width={"full"} frameborder="0"></iframe>
+                                        <iframe src={`https://www.youtube.com/embed/${tituloVideos[0]?.key}`} className="w-full h-full outline-none max-sm:hidden max-md:hidden" width={"full"}></iframe>
                                     ) : <span></span>}
                                 </div>
 
                                 <div className="flex flex-row items-center gap-5">
 
                                     <Swiper className="w-full max-w-screen-lg overflow-hidden"
+                                        autoplay={true}
+                                        loop={true}
                                         breakpoints={{
                                             300: {
                                                 slidesPerView: 2,
@@ -151,43 +140,15 @@ const PaginaDetalhadaDosItens = () => {
                                     <p>{movie.overview}</p>
                                 </div>
 
-                                <div className="w-full flex flex-col gap-5 border-0 border-t border-preto_claro">
-                                    <h2 className="text-2xl font-semibold text-laranja my-5">Avaliações</h2>
-                                    {tituloAvaliacoes.results.length > 0 ? (
+                                {/* Este é o componente de avaliações do titulo atual */}
 
-                                        tituloAvaliacoes.results.map((avaliacao, index) => {
-                                            const dataFormatada = new Date(avaliacao.created_at).toLocaleDateString("pt-BR", {
-                                                day: "2-digit",
-                                                month: "2-digit",
-                                                year: "numeric"
-                                            });
-                                            return (
-                                                <div className="flex flex-col gap-3 bg-preto_escuro p-5 rounded-lg" key={index}>
-                                                    <div className="flex gap-5 items-start">
-                                                        {avaliacao.author_details.avatar_path !== null ? <img src={`https://image.tmdb.org/t/p/w300${avaliacao.author_details.avatar_path}`} className="w-10 h-10 object-cover rounded-full" alt="" /> : <FaCircleUser className="w-10 h-10 text-laranja" />}
-                                                        <span>
-                                                            <h3>{avaliacao.author}</h3>
-                                                            <p>{dataFormatada}</p>
-                                                        </span>
-                                                        <p className="flex gap-1 items-center">{avaliacao.author_details.rating !== null ? avaliacao.author_details.rating : "1"}/10 <FaStar className="text-yellow-500 text-sm" /></p>
-                                                    </div>
-                                                    <p>{avaliacao.content.length > 500 && textoCompleto ?
-                                                        (<>
-                                                            <p>{`${avaliacao.content.substring(0, 490)}...`} <button onClick={() => setTextoCompleto(!textoCompleto)} className="text-laranja hover:text-orange-800" >Ler mais</button></p>
-
-                                                        </>)
-                                                        : (<p>{avaliacao.content}</p>)}  </p>
-                                                </div>
-                                            )
-                                        })
-                                    ) : (
-                                        <p>Não há avaliações para este filme</p>
-
-                                    )}
+                                <div>
+                                    <AvaliacoesComponente valor={tituloAvaliacoes} />
                                 </div>
 
-                                <div className="w-full max-w-screen-lg flex flex-col gap-3 my-5">
-                                    <h2 className="text-2xl font-semibold text-laranja">Semelhantes</h2>
+                                {/* Neste componente fica títulos semelhantes ao tituto atual */}
+
+                                <div> 
                                     <ComponenteTitulosSemelhantes valor={titulosSemelhantes} />
                                 </div>
                             </div>
