@@ -25,6 +25,8 @@ export default {
         "linhas0.5/1": "0.3fr 0.7fr ",
         "linhas0.3/1/0.5/0.5": "0.3fr 0.5fr 0.5fr 0.5fr",
         "template-infos": "0.2fr 0.5fr 1fr 0.2fr",
+        "template-infos-h-fixed": "20px 35px 60px 30px",
+        "template-infos-h-fixed-mobile": "15px 35px 50px 25px",
         "template-infos-mob": "0.5fr 1fr 0.2fr",
       },
       height: {

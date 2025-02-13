@@ -58,7 +58,7 @@ export const ComponenteTitulosSemelhantes = ({ valor }) => {
                                             <FaRegStar className="text-yellow-400" />
                                             <p>{movie.vote_average.toFixed(1)}</p>
                                         </div>
-                                        <Link href={`/pages/detalhes?tm=${movie.media_type}&idt=${movie.id}`} className="text-lg text-laranja overflow-hidden whitespace-nowrap text-ellipsis">
+                                        <Link target="_top" href={`/pages/detalhes?tm=${movie.media_type}&idt=${movie.id}`} className="text-lg text-laranja overflow-hidden whitespace-nowrap text-ellipsis">
                                             {movie.title || movie.name}
                                         </Link >
                                         <p className="max-h-12 overflow-hidden text-xs mb-3">
