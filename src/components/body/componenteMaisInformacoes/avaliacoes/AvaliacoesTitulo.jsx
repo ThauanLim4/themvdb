@@ -1,16 +1,29 @@
 import { FaStar } from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export const AvaliacoesComponente = ({ valor }) => {
+export const AvaliacoesComponente = ({ valor, tituloMidiaTipo, tituloID }) => {
     const [textoCompleto, setTextoCompleto] = useState(true);
+    const [tituloAvaliacoes, setTituloAvaliacoes] = useState([]);
+
+    useEffect(() => {
+
+        const pegarAvaliacoesTitulo = async () => {
+            const API_KEY = '6cab2673c87af7cea093eb14c8a77328';
+            const BASE_URL = 'https://api.themoviedb.org/3';
+            const responseAvaliacoes = await fetch(`${BASE_URL}/${tituloMidiaTipo}/${tituloID}/reviews?api_key=${API_KEY}`);
+            const dataAvaliacoes = await responseAvaliacoes.json();
+            setTituloAvaliacoes(dataAvaliacoes);
+        }
+        pegarAvaliacoesTitulo();
+    })
 
     return (
         <div className="w-full flex flex-col gap-5 border-0 border-t border-preto_claro">
             <h2 className="text-2xl font-semibold text-laranja my-5">Avaliações</h2>
-            {valor.results.length > 0 ? (
+            {tituloAvaliacoes.results?.length > 0 ? (
 
-                valor.results.map((avaliacao, index) => {
+                tituloAvaliacoes.results?.map((avaliacao, index) => {
                     const dataFormatada = new Date(avaliacao.created_at).toLocaleDateString("pt-BR", {
                         day: "2-digit",
                         month: "2-digit",

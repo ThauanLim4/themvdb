@@ -45,9 +45,7 @@ export const ComponentePrincipal = () => {
             setFilmesEmAlta(filmes);
             setSeriesEmAlta(series);
             setPessoasEmAlta(pessoas);
-
-            console.log("series em alta:", series)
-        }
+                }
         pegarTudoQueEstaEmAlta();
     }, []);
 
@@ -60,7 +58,6 @@ export const ComponentePrincipal = () => {
             </section>
 
             {/* Esta é a sessão onde contém os filmes divididos por gênero. */}
-
 
             <section>
                 <ComponenteGenerosDeFilmes valor={filmesPorGenero} />

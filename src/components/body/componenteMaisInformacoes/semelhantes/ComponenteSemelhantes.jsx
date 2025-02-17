@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { FaRegStar } from "react-icons/fa";
@@ -7,12 +8,27 @@ import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import '@/css/custom-swiper.css';
+import { useEffect, useState } from "react";
 
-export const ComponenteTitulosSemelhantes = ({ valor }) => {
+export const ComponenteTitulosSemelhantes = ({ tituloMidiaTipo, tituloID }) => {
+    const [titulosSemelhantes, setTitulosSemelhantes] = useState([]);
+
+    useEffect(() => {
+        const pegarTitulosSemelhantes = async () => {
+            const API_KEY = '6cab2673c87af7cea093eb14c8a77328';
+            const BASE_URL = 'https://api.themoviedb.org/3';
+            const responseSemelhantes = await fetch(`${BASE_URL}/${tituloMidiaTipo}/${tituloID}/recommendations?api_key=${API_KEY}&language=pt-BR&page=1`);
+            const dataSemelhantes = await responseSemelhantes.json();
+            setTitulosSemelhantes(dataSemelhantes);
+        }
+
+        pegarTitulosSemelhantes();
+    })
+
     return (
         <div className="w-full max-w-screen-lg flex flex-col gap-3 my-5">
             <h2 className="text-2xl font-semibold text-laranja">Semelhantes</h2>
-            {valor.length > 0 ? (
+            {titulosSemelhantes.results?.length > 0 ? (
                 <div className="flex justify-start overflow-x-auto py-5">
 
                     <Swiper
@@ -45,7 +61,7 @@ export const ComponenteTitulosSemelhantes = ({ valor }) => {
                         <div className='max-sm:hidden max-md:hidden'>
                             <FaChevronLeft className="swiper-button-prev" />
                         </div>
-                        {valor.map((movie, index) => (
+                        {titulosSemelhantes.results?.map((movie, index) => (
                             <SwiperSlide key={movie.id}>
                                 <div className={`max-sm:flex-row max-sm:max-h-36 flex flex-col w-full bg-preto_escuro rounded-lg h-full max-h-425`}>
                                     <img

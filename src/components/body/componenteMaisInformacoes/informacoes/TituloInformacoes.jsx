@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import { FaRegStar } from 'react-icons/fa'
 import { IoPeopleSharp } from 'react-icons/io5'
@@ -7,7 +8,7 @@ export const ComponenteTituloInformacoes = ({ valor }) => {
         <>
             <div>
                 <div className="flex justify-between">
-                    <h2 className="text-3xl text-laranja font-semibold">{valor.title}</h2>
+                    <h2 className="text-3xl text-laranja font-semibold">{valor.title || valor.name}</h2>
                     <span className="flex gap-5 items-center">
                         <p className="flex items-center gap-1">{valor.vote_average.toFixed(1)} <FaRegStar className="text-yellow-500" /></p>
                         <p className="flex items-center gap-1">{valor.vote_count} <IoPeopleSharp /></p>
@@ -19,16 +20,17 @@ export const ComponenteTituloInformacoes = ({ valor }) => {
                         {valor.status === "Released" ? "Lançamento" : "Em cartaz"}
                     </p>
                     <span className="border"></span>
-                    <p>Ano {valor.release_date.substring(0, 4)}</p>
+                    <p>Ano {valor.release_date?.substring(0, 4) || valor.last_air_date?.substring(0, 4)}</p>
                     <span className="border"></span>
-                    <p>{valor.runtime} min</p>
+                    <p>{valor.runtime ? `${valor.runtime} min` : `${valor.episode_run_time} min`}</p>
                 </div>
-
 
                 <div className="flex gap-2 py-2">
                     {valor.genres.map((genre, index) => {
                         return (
-                            <p className="border border-preto_claro rounded-md px-2 py-1 font-semibold hover:border-laranja hover:text-laranja transtition duration-300" key={index}>{genre.name}</p>
+                            <Link href={`/pages/generos?genero=${genre.name}&id=${genre.id}`} key={index} className='flex gap-2 py-2'>
+                                <p className=" text-center border border-preto_claro rounded-md px-2 py-1 font-semibold hover:border-laranja hover:text-laranja transtition duration-300" key={index}>{genre.name}</p>
+                            </Link>
                         )
                     })}
 

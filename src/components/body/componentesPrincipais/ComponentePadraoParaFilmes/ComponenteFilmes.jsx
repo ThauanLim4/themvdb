@@ -8,7 +8,7 @@ import './../../../../css/custom-swiper.css';
 import Link from 'next/link';
 
 export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
-    console.log("valor retornado: ", valor);
+    console.log("filmes populares: ", valor);
 
     return (
         <section className="p-5 max-w-screen-xl mx-auto">
