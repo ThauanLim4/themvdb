@@ -57,6 +57,10 @@ export const ComponentePrincipal = () => {
                 <ComponenteDeFilmes valor={filmesPopulares} nomeDaSessao="Mais Populares" />
             </section>
 
+            <section>
+                <ComponenteDeFilmes valor={seriesEmAlta} nomeDaSessao={"Séries em alta da semana"} />
+            </section>
+
             {/* Esta é a sessão onde contém os filmes divididos por gênero. */}
 
             <section>
@@ -68,10 +72,7 @@ export const ComponentePrincipal = () => {
             </section>
 
             {/* Esta sessão é a que contém as séries em alta da semana. */}
-            <section>
-                <ComponenteDeFilmes valor={seriesEmAlta} nomeDaSessao={"Séries em alta da semana"} />
 
-            </section>
         </div>
     )
 }
