@@ -56,7 +56,6 @@ export const ComponenteTituloMidias = ({ valor, tituloID, tituloMidiaTipo }) => 
                         300: {
                             slidesPerView: 2,
                             freeMode: true,
-                            spaceBetween: 50
                         },
                         500: {
                             slidesPerView: 2,
@@ -75,7 +74,7 @@ export const ComponenteTituloMidias = ({ valor, tituloID, tituloMidiaTipo }) => 
                 >
                     {tituloImagens.map((image, index) => (
                         <SwiperSlide key={index} className="flex flex-row mt-4 items-center gap-5 px-5 w-full">
-                            <img src={`https://image.tmdb.org/t/p/w300${image.file_path}`} className="imagem-cartaz" key={index} />
+                            <img src={`https://image.tmdb.org/t/p/w300${image.file_path}`} className="w-full max-w-96" key={index} />
                         </SwiperSlide>
                     ))}
                 </Swiper>

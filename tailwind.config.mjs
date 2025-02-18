@@ -19,6 +19,8 @@ export default {
       },
       gridTemplateColumns: {
         "colunas1/0.5": "0.5fr 1fr",
+        "colunas0.7/1": "0.7fr 1fr",
+
       },
       gridTemplateRows: {
         "linhas0.5": "repeat(4, 0.5fr)",
@@ -35,6 +37,7 @@ export default {
       maxHeight: {
         50: "50px",
         425: "425px",
+        750: "750px",
       },
     },
   },
