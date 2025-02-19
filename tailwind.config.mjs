@@ -70,16 +70,16 @@ export default {
   			'template-infos-mob': '0.5fr 1fr 0.2fr'
   		},
   		height: {
-  			'425': '425px',
+  			425: '425px',
 			24: "24px"
   		},
 		width: {
 			24: '24px',
 		},
   		maxHeight: {
-  			'50': '50px',
-  			'425': '425px',
-  			'750': '750px'
+  			50: '50px',
+  			425: '425px',
+  			750: '750px'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
