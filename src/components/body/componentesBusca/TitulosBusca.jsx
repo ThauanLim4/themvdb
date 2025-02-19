@@ -5,12 +5,13 @@ import { FaRegStar } from 'react-icons/fa';
 import { IoIosAdd } from 'react-icons/io';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-export const ComponenteTitulosBusca = ({ valor, nomeDaSessao }) => {
+
+export const ComponenteTitulosBusca = ({ valor, midia }) => {
     console.log("valor retornado: ", valor);
 
     return (
         <section className="p-5 max-w-screen-xl mx-auto">
-            <h2 className="text-2xl font-bold text-laranja">{nomeDaSessao}</h2>
+
             <div className="flex justify-start overflow-x-auto py-5 text-branco">
                 {valor.length > 0 ? (
                     <div className='gap-5 max-sm:flex max-sm:flex-col grid max-md:grid-cols-2 max-lg:grid-cols-3 grid-cols-4'>
@@ -32,7 +33,7 @@ export const ComponenteTitulosBusca = ({ valor, nomeDaSessao }) => {
                                         <FaRegStar className="text-yellow-400" />
                                         {movie.vote_average && movie.vote_average !== undefined ? <p>{movie.vote_average.toFixed(1)}</p> : <p>sem avaliações</p>}
                                     </div>
-                                    <Link href={`/pages/detalhes?tm=${!movie.media_type ? 'movie' : 'tv'}&idt=${movie.id}`} className="text-lg text-laranja overflow-hidden whitespace-nowrap text-ellipsis">
+                                    <Link href={`/pages/detalhes?tm=${midia}&idt=${movie.id}`} className="text-lg text-laranja overflow-hidden whitespace-nowrap text-ellipsis">
                                         {movie.title || movie.name}
                                     </Link >
                                     <p className="max-h-12 overflow-hidden text-xs mb-3">

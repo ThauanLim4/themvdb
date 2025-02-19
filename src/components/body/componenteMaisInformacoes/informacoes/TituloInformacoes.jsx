@@ -1,16 +1,18 @@
+import { Skeleton } from '@/components/ui/skeleton'
 import Link from 'next/link'
 import React from 'react'
 import { FaRegStar } from 'react-icons/fa'
 import { IoPeopleSharp } from 'react-icons/io5'
 
 export const ComponenteTituloInformacoes = ({ valor }) => {
+    console.log("valor que está chegando em titulo unformaçoes:", valor)
     return (
         <>
             <div>
                 <div className="flex justify-between">
                     <h2 className="text-3xl text-laranja font-semibold">{valor.title || valor.name}</h2>
                     <span className="flex gap-5 items-center">
-                        <p className="flex items-center gap-1">{valor.vote_average.toFixed(1)} <FaRegStar className="text-yellow-500" /></p>
+                        <p className="flex items-center gap-1">{valor.vote_average?.toFixed(1)} <FaRegStar className="text-yellow-500" /></p>
                         <p className="flex items-center gap-1">{valor.vote_count} <IoPeopleSharp /></p>
                     </span>
                 </div>
@@ -33,7 +35,6 @@ export const ComponenteTituloInformacoes = ({ valor }) => {
                             </Link>
                         )
                     })}
-
                 </div>
 
 
@@ -41,7 +42,7 @@ export const ComponenteTituloInformacoes = ({ valor }) => {
                     <h2 className="text-2xl font-semibold text-laranja">Sinopse</h2>
                     <p>{valor.overview}</p>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

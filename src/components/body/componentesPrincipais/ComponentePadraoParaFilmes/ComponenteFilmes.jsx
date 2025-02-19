@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { GoInfo } from 'react-icons/go';
-import { FaChevronCircleLeft, FaChevronCircleRight, FaRegStar } from 'react-icons/fa';
+import { FaChevronCircleLeft, FaChevronCircleRight, FaChevronLeft, FaChevronRight, FaRegStar } from 'react-icons/fa';
 import { IoIosAdd } from 'react-icons/io';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './../../../../css/custom-swiper.css';
 import Link from 'next/link';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
     console.log("filmes populares: ", valor);
@@ -40,21 +41,21 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                             },
                         }}
                         navigation={{
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
+                            nextEl: '.proximo',
+                            prevEl: '.anterior',
                         }}
                     >
                         {valor.map((movie, index) => (
                             <SwiperSlide key={index}>
-                                <div className="max-sm:flex-row max-md:flex-row max-sm:max-h-36 max-md:max-h-36 flex flex-col w-full bg-preto_escuro rounded-lg h-full max-h-425 ">  
+                                <div className="max-sm:flex-row max-md:flex-row max-sm:max-h-36 max-md:max-h-36 flex flex-col w-full bg-preto_escuro rounded-lg h-full max-h-425 ">
                                     {movie.poster_path && movie.poster_path !== undefined ? (
                                         <img
-                                        src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-                                        alt={movie.title || movie.name}
-                                        className="max-sm:object-fill max-sm:w-max max-sm:min-h-36 max-md:w-max max-md:min-h-36 min-h-64 max-h-64 h-full w-full rounded-lg object-contain"
-                                    />
-                                    ): <></>}
-                                    
+                                            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                                            alt={movie.title || movie.name}
+                                            className="max-sm:object-fill max-sm:w-max max-sm:min-h-36 max-md:w-max max-md:min-h-36 min-h-64 max-h-64 h-full w-full rounded-lg object-contain"
+                                        />
+                                    ) : <></>}
+
                                     <div className="px-3 py-2 grid max-sm:grid-rows-template-infos-h-fixed-mobile
                                     max-md:grid-rows-template-infos-h-fixed-mobile
                                     grid-rows-template-infos-h-fixed w-full">
@@ -70,12 +71,12 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                                                 ? `${movie.overview.length > 75 ? movie.overview.substring(0, 72) + '...' : movie.overview}`
                                                 : 'Sem Sinopse'}
                                         </p>
-                                        
+
                                         <div className="flex items-center justify-between">
                                             <button onClick={() => alert('Funcionalidade em desenvolvimento')} className="w-32 h-7 rounded-lg bg-laranja text-branco text-sm flex justify-center items-center hover:bg-preto_escuro hover:border-2 border-laranja transition-all duration-300">
                                                 Inserir na Lista <IoIosAdd />
                                             </button>
-                                            <button 
+                                            <button
                                                 data-tooltip-id="tooltip-mais-infos"
                                                 data-tooltip-content="Mais Informações"
                                                 className="text-laranja font-medium"
@@ -88,16 +89,21 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                                 </div>
                             </SwiperSlide>
                         ))}
-                        <div className='max-sm:hidden max-md:hidden'>
-                            <FaChevronCircleRight className="swiper-button-next botão-swiper" />
+                        <div class="proximo absolute top-2/4 right-0 w-24 h-24 p-3 rounded-lg bg-transparent items-center justify-center flex border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro duration-300 cursor-pointer active:scale-[0.98] z-10">
+                            <button class="px-5 py-2"><FaChevronRight /></button>
                         </div>
-                        <div className='max-sm:hidden max-md:hidden' >
-                            <FaChevronCircleLeft className="swiper-button-prev botão-swiper" />
+
+                        <div class="anterior absolute top-2/4 left-0 w-24 h-24 p-3 rounded-lg bg-transparent items-center justify-center flex border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro duration-300 cursor-pointer active:scale-[0.98] z-10">
+                            <button class="px-5 py-2"><FaChevronLeft /></button>
                         </div>
                     </Swiper>
-                ) : (
-                    <p>Carregando...</p>
-                )}
+                )
+                    : <div className='gap-5 flex overflow-x-hidden'>
+                        {[...Array(5)].map((_, index) => (
+                            <Skeleton key={index} className={"max-sm:h-36 max-sm:w-96 h-425 w-60"} />
+                        ))}
+                    </div>
+                }
             </div>
         </section>
     );
