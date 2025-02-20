@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Link from 'next/link';
 import { GoInfo } from 'react-icons/go';
-import { FaChevronCircleLeft, FaChevronCircleRight, FaChevronLeft, FaChevronRight, FaRegStar } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaRegStar } from 'react-icons/fa';
 import { IoIosAdd } from 'react-icons/io';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './../../../../css/custom-swiper.css';
-import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
-    console.log("filmes populares: ", valor);
+    const btnClasses = "max-sm:hidden max-md:hidden absolute top-2/4 w-24 h-24 p-3 rounded-lg bg-transparent items-center justify-center flex border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro duration-300 cursor-pointer active:scale-[0.98] z-10";
 
     return (
         <section className="p-5 max-w-screen-xl mx-auto">
@@ -89,11 +89,11 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                                 </div>
                             </SwiperSlide>
                         ))}
-                        <div class="proximo absolute top-2/4 right-0 w-24 h-24 p-3 rounded-lg bg-transparent items-center justify-center flex border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro duration-300 cursor-pointer active:scale-[0.98] z-10">
+                        <div class={`${btnClasses} proximo right-0`}>
                             <button class="px-5 py-2"><FaChevronRight /></button>
                         </div>
 
-                        <div class="anterior absolute top-2/4 left-0 w-24 h-24 p-3 rounded-lg bg-transparent items-center justify-center flex border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro duration-300 cursor-pointer active:scale-[0.98] z-10">
+                        <div class={`${btnClasses} anterior left-0`}>
                             <button class="px-5 py-2"><FaChevronLeft /></button>
                         </div>
                     </Swiper>

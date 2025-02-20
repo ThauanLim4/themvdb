@@ -119,6 +119,12 @@ body {
   max-height: 144px;
 }
 
+.imagem-quebrada {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse, orangered, transparent, orange) orange;
+}
+
 .hide-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */

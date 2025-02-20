@@ -1,5 +1,6 @@
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { FaRegStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { FaRegStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 export const ComponenteEpisodiosTitulo = ({ valor, tituloID }) => {
     const [episodiosTitulo, setEpisodiosTitulo] = useState([]);
@@ -38,7 +39,7 @@ export const ComponenteEpisodiosTitulo = ({ valor, tituloID }) => {
                 <h2 className='text-2xl text-laranja font-semibold my-5'>Temporadas</h2>
                 {episodiosTitulo?.length > 0 ? (
                     <div className='max-sm:flex max-sm:flex-col grid grid-cols-colunas1/0.5 gap-5'>
-                        <div className='bg-preto_escuro rounded-lg p-5 max-h-750'>
+                        <div className='bg-preto_escuro rounded-lg p-5 max-h-750 h-full'>
                             <div className='flex flex-col items-center gap-5 mb-5'>
                                 {imagensDaTemporada.length > 0 ? (
                                     <img
@@ -68,19 +69,29 @@ export const ComponenteEpisodiosTitulo = ({ valor, tituloID }) => {
 
                             {episodiosTitulo.map((ep, index) => {
                                 return (
-                                    <div key={index} className="grid grid-cols-colunas1/0.5 gap-3 bg-preto_escuro rounded-lg">
-                                        <img
-                                            src={`https://image.tmdb.org/t/p/w300${ep.still_path}`}
-                                            alt={ep.title || ep.name}
-                                            className='max-sm:min-w-36 min-w-48 w-full h-full max-w-48 object-cover rounded-l-lg'
-                                        />
+                                    <div key={index} className="grid grid-cols-colunas1/0.5 gap-3 bg-preto_escuro rounded-lg relative min-h-28 max-h-28 h-full">
+                                        {ep.still_path && ep.still_path !== null ? (
+                                            <img
+                                                src={`https://image.tmdb.org/t/p/w300${ep.still_path}`}
+                                                alt={ep.title || ep.name}
+                                                className='max-sm:min-w-36 min-w-48 w-full h-full max-w-48 object-cover rounded-l-lg'
+                                            />
+                                        ) : (
+                                            <Image src={'/broken.png'} className='max-sm:min-w-36 min-w-48 w-full h-full max-w-48 object-cover rounded-l-lg' width={192} height={192} alt='imagem quebrada' />
+                                        )}
+
+                                        {ep.runtime && ep.runtime !== null ?
+                                            <p className='absolute bottom-0 left-0 bg-laranja px-1 text-sm font-semibold rounded-bl-lg'>{ep.runtime} min</p>
+                                            : <></>
+                                        }
+
 
                                         <div className="overflow-x-hidden">
                                             <h2 className="text-laranja overflow-hidden whitespace-nowrap text-ellipsis">
                                                 {ep.name} - T{ep.season_number} • E{ep.episode_number}
                                             </h2 >
                                             <p className="max-h-12 overflow-hidden text-xs mb-3">
-                                                {ep.overview}
+                                                {ep.overview && ep.overview !== null ? ep.overview : 'Sem sinopse ainda...'}
                                             </p>
 
                                         </div>

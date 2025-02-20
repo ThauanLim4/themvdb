@@ -24,7 +24,11 @@ export const ComponenteTituloInformacoes = ({ valor }) => {
                     <span className="border"></span>
                     <p>Ano {valor.release_date?.substring(0, 4) || valor.last_air_date?.substring(0, 4)}</p>
                     <span className="border"></span>
-                    <p>{valor.runtime ? `${valor.runtime} min` : `${valor.episode_run_time} min`}</p>
+
+                    <p>{valor.runtime ? `${valor.runtime} min` : <></>}</p>
+                    
+                    {valor.number_of_seasons && valor.number_of_episodes 
+                    ? <p>Temporadas {valor.number_of_seasons} • Eposódios {valor.number_of_episodes}</p> : <></>}
                 </div>
 
                 <div className="flex gap-2 py-2">

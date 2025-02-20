@@ -71,16 +71,21 @@ export default {
   		},
   		height: {
   			425: '425px',
-			24: "24px"
+			24: "24px",
+			128: "128px"
   		},
 		width: {
 			24: '24px',
+			128: "128px",
 		},
   		maxHeight: {
   			50: '50px',
   			425: '425px',
   			750: '750px'
   		},
+		minHeight: {
+			500: '500px',
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

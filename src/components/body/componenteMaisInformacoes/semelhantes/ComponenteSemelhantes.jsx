@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import '@/css/custom-swiper.css';
 import { useEffect, useState } from "react";
+import { ComponenteItemSkeleton } from "@/components/skeleton/ItemSkeleton";
 
 export const ComponenteTitulosSemelhantes = ({ tituloMidiaTipo, tituloID }) => {
     const [titulosSemelhantes, setTitulosSemelhantes] = useState([]);
@@ -30,7 +31,6 @@ export const ComponenteTitulosSemelhantes = ({ tituloMidiaTipo, tituloID }) => {
             <h2 className="text-2xl font-semibold text-laranja">Semelhantes</h2>
             {titulosSemelhantes.results?.length > 0 ? (
                 <div className="flex justify-start overflow-x-auto py-5">
-
                     <Swiper
                         spaceBetween={10}
                         slidesPerView={5}
@@ -106,7 +106,7 @@ export const ComponenteTitulosSemelhantes = ({ tituloMidiaTipo, tituloID }) => {
                     </Swiper>
                 </div>
             ) : (
-                <p>Carregando...</p>
+                <ComponenteItemSkeleton quantidade={5} />
             )}
         </div>
     )

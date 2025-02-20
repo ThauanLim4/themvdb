@@ -10,6 +10,7 @@ import { GetByGenre, getPopularMovies, GetTrendingMovies, GetTrendingPeople, Get
 import React, { useState, useEffect } from 'react';
 import { ComponenteDeFilmes } from "./componentesPrincipais/ComponentePadraoParaFilmes/ComponenteFilmes";
 import { ComponenteGenerosDeFilmes } from './componentesPrincipais/ComponentePadraoParageneros/Generos';
+import { ComponenteAtores } from "./componentAtores/Atores";
 
 
 register();
@@ -62,6 +63,10 @@ export const ComponentePrincipal = () => {
             </section>
 
             {/* Esta é a sessão onde contém os filmes divididos por gênero. */}
+
+            <section>
+                <ComponenteAtores />
+            </section>
 
             <section>
                 <ComponenteGenerosDeFilmes valor={filmesPorGenero} />
