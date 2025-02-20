@@ -32,15 +32,16 @@ export const ComponenteTituloInformacoes = ({ valor }) => {
                 </div>
 
                 <div className="flex gap-2 py-2">
-                    {valor.genres.map((genre, index) => {
-                        return (
-                            <Link href={`/pages/generos?genero=${genre.name}&id=${genre.id}`} key={index} className='flex gap-2 py-2'>
-                                <p className=" text-center border border-preto_claro rounded-md px-2 py-1 font-semibold hover:border-laranja hover:text-laranja transtition duration-300" key={index}>{genre.name}</p>
-                            </Link>
-                        )
-                    })}
+                    {valor.genres && valor.genres !== undefined ? (
+                        valor.genres.map((genre, index) => {
+                            return (
+                                <Link href={`/pages/generos?genero=${genre.name}&id=${genre.id}`} key={index} className='flex gap-2 py-2'>
+                                    <p className=" text-center border border-preto_claro rounded-md px-2 py-1 font-semibold hover:border-laranja hover:text-laranja transtition duration-300" key={index}>{genre.name}</p>
+                                </Link>
+                            )
+                        })
+                    ) : <></>}
                 </div>
-
 
                 <div className="flex flex-col gap-3 my-5">
                     <h2 className="text-2xl font-semibold text-laranja">Sinopse</h2>

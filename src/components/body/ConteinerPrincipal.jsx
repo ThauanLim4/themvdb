@@ -20,7 +20,6 @@ export const ComponentePrincipal = () => {
     const [filmesPorGenero, setFilmesPorGenero] = useState([]);
     const [filmesEmAlta, setFilmesEmAlta] = useState([]);
     const [seriesEmAlta, setSeriesEmAlta] = useState([]);
-    const [pessoasEmAlta, setPessoasEmAlta] = useState([]);
 
 
     useEffect(() => {
@@ -32,7 +31,6 @@ export const ComponentePrincipal = () => {
 
         const pegarFilmesPorGenero = async () => {
             const genero = await GetByGenre();
-            console.log(genero);
             setFilmesPorGenero(genero);
         }
         pegarFilmesPorGenero();
@@ -41,12 +39,12 @@ export const ComponentePrincipal = () => {
         const pegarTudoQueEstaEmAlta = async () => {
             const filmes = await GetTrendingMovies();
             const series = await GetTrendingTv();
-            const pessoas = await GetTrendingPeople();
 
+            console.log("filmes em alta", filmes);
             setFilmesEmAlta(filmes);
             setSeriesEmAlta(series);
-            setPessoasEmAlta(pessoas);
-                }
+
+        }
         pegarTudoQueEstaEmAlta();
     }, []);
 
@@ -72,11 +70,12 @@ export const ComponentePrincipal = () => {
                 <ComponenteGenerosDeFilmes valor={filmesPorGenero} />
             </section>
 
+            {/* Esta sessão é a que contém as séries em alta da semana. */}
+{/*             
             <section>
                 <ComponenteDeFilmes valor={filmesEmAlta} nomeDaSessao={"Filmes em alta da semana"} />
-            </section>
+            </section> */}
 
-            {/* Esta sessão é a que contém as séries em alta da semana. */}
 
         </div>
     )

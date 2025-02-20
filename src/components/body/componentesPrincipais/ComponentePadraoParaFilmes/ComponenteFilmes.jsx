@@ -10,7 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
     const btnClasses = "max-sm:hidden max-md:hidden absolute top-2/4 w-24 h-24 p-3 rounded-lg bg-transparent items-center justify-center flex border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro duration-300 cursor-pointer active:scale-[0.98] z-10";
-
+    
     return (
         <section className="p-5 max-w-screen-xl mx-auto">
             <h2 className="text-2xl font-bold text-laranja">{nomeDaSessao}</h2>

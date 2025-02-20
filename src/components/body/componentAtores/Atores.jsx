@@ -20,20 +20,16 @@ export const ComponenteAtores = () => {
       <Swiper
         breakpoints={{
           300: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 20
           },
           550: {
-            slidesPerView: 2,
-            spaceBetween: 10
-          },
-          768: {
             slidesPerView: 3,
             spaceBetween: 10
           },
           980: {
-            spaceBetween: 10,
             slidesPerView: 4,
+            spaceBetween: 10,
           },
           1180: {
             slidesPerView: 5,
@@ -46,8 +42,8 @@ export const ComponenteAtores = () => {
           return (
 
             <SwiperSlide key={index}>
-              <div className='max-sm:flex-row max-md:flex-row max-sm:max-h-36 max-md:max-h-36 flex flex-col w-full bg-preto_escuro rounded-lg h-full min-h-72 max-h-72 px-3 text-center gap-5 hover:bg-preto_claro transition-all duration-300'>
-                <img src={`https://image.tmdb.org/t/p/w500${ator.profile_path}`} alt="" className='max-sm:object-fill max-sm:w-max max-sm:min-h-36 max-md:w-max max-md:min-h-36 min-h-max-h-52 max-h-52 h-full w-full rounded-lg object-contain' />
+              <div className='max-sm:max-h-36 max-md:max-h-36 flex flex-col w-full bg-preto_escuro rounded-lg h-full min-h-72 max-h-72 px-3 text-center gap-5 hover:bg-preto_claro transition-all duration-300 items-center'>
+                <img src={`https://image.tmdb.org/t/p/w500${ator.profile_path}`} alt="" className='max-sm:object-fill max-sm:w-max max-sm:min-h-36 max-md:w-max max-md:min-h-36 min-h-max-h-52 max-h-52 h-full w-full rounded-b-lg object-contain' />
                 <h3 className='text-xl text-laranja'>{ator.name}</h3>
               </div>
             </SwiperSlide>

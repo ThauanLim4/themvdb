@@ -31,7 +31,7 @@ export const ComponenteTituloMidias = ({ valor, tituloID, tituloMidiaTipo }) => 
 
     return (
         <div className="flex flex-col mb-5">
-            {tituloVideos.length > 0 && tituloVideos !== undefined ? (
+            {tituloVideos !== undefined && tituloVideos.length > 0 ? (
                 <div className="grid grid-cols-colunas1/0.5 max-sm:flex max-md:flex">
                     {valor.poster_path !== null
                         ? <img src={`https://image.tmdb.org/t/p/w300${valor.poster_path}`} className="w-96 max-h-96 object-contain mx-auto" />
