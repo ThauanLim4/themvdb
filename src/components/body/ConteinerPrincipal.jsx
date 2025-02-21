@@ -8,9 +8,9 @@ import "swiper/css/effect-fade";
 
 import { GetByGenre, getPopularMovies, GetTrendingMovies, GetTrendingPeople, GetTrendingTv } from '@/utils/api';
 import React, { useState, useEffect } from 'react';
-import { ComponenteDeFilmes } from "./componentesPrincipais/ComponentePadraoParaFilmes/ComponenteFilmes";
-import { ComponenteAtores } from "./componentAtores/Atores";
-import { ComponenteGenerosDeFilmes } from "./componentesPrincipais/ComponentePadraoParageneros/Generos";
+import { ComponenteDeFilmes } from "./componentesPrincipais/ComponenteFilmes";
+import { ComponenteAtores } from "./componentesAtores/Atores";
+import { ComponenteGenerosDeFilmes } from "./componentesPrincipais/Generos";
 
 
 register();

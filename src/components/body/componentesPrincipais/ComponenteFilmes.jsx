@@ -1,12 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
+import { Skeleton } from '@/components/ui/skeleton';
 import { GoInfo } from 'react-icons/go';
 import { FaChevronLeft, FaChevronRight, FaRegStar } from 'react-icons/fa';
 import { IoIosAdd } from 'react-icons/io';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import './../../../../css/custom-swiper.css';
-import { Skeleton } from '@/components/ui/skeleton';
+
+import '@/css/custom-swiper.css';
 
 export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
     const btnClasses = "max-sm:hidden max-md:hidden absolute top-2/4 w-24 h-24 p-3 rounded-lg bg-transparent items-center justify-center flex border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro duration-300 cursor-pointer active:scale-[0.98] z-10";

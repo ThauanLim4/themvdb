@@ -1,13 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import { ComponenteTitulosSemelhantes } from "@/components/body/componenteMaisInformacoes/semelhantes/ComponenteSemelhantes";
-import { AvaliacoesComponente } from "@/components/body/componenteMaisInformacoes/avaliacoes/AvaliacoesTitulo";
-import { ComponenteTituloInformacoes } from "@/components/body/componenteMaisInformacoes/informacoes/TituloInformacoes";
+import { ComponenteTitulosSemelhantes } from "@/components/body/componentesDetalhes/semelhantes/ComponenteSemelhantes";
+import { AvaliacoesComponente } from "@/components/body/componentesDetalhes/avaliacoes/AvaliacoesTitulo";
+import { ComponenteTituloInformacoes } from "@/components/body/componentesDetalhes/informacoes/TituloInformacoes";
 import '@/css/custom-swiper.css';
 import 'swiper/css';
-import { ComponenteTituloMidias } from "@/components/body/componenteMaisInformacoes/midias/TituloMidias";
+import { ComponenteTituloMidias } from "@/components/body/componentesDetalhes/midias/TituloMidias";
 import { HeaderComponent } from "@/components/header/Header";
-import { ComponenteEpisodiosTitulo } from "@/components/body/componenteMaisInformacoes/episodios/episodiosTitulo";
+import { ComponenteEpisodiosTitulo } from "@/components/body/componentesDetalhes/episodios/episodiosTitulo";
 
 const PaginaDetalhadaDosItens = () => {
     const [detalhesDoTitulo, setDetalhesDoTitulo] = useState([]);
