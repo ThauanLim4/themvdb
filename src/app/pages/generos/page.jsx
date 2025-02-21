@@ -6,24 +6,30 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 
 const Generos = () => {
-    const [resultUrl, setResultUrl] = useState("");
     const [generoUrl, setGeneroUrl] = useState("");
     const [paginaAtual, setPaginaAtual] = useState(1);
     const [titulosBaseadosNoGenero, setTitulosBaseadosNoGenero] = useState([]);
+    const [tipoDaMidia, setTipoDaMidia] = useState("movie");
 
     useEffect(() => {
         let id = window.location.search.split('=')[2];
         let genero = window.location.search.split('=')[1].split("&")[0];
         let generoDecode = decodeURIComponent(genero);
         setGeneroUrl(generoDecode);
+        
         const pegarTitulosPorGenero = async () => {
             const API_KEY = '6cab2673c87af7cea093eb14c8a77328';
             const BASE_URL = 'https://api.themoviedb.org/3';
-            const response = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=${id}&page=${paginaAtual}`);
-            const data = await response.json();
+            let response = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=${id}&page=${paginaAtual}`);
+            let data = await response.json();
+            
+            if (data.results.length === 0) {
+                response = await fetch(`${BASE_URL}/discover/tv?api_key=${API_KEY}&language=pt-BR&with_genres=${id}&page=${paginaAtual}`);
+                data = await response.json();
+                setTipoDaMidia("tv");
+                setTitulosBaseadosNoGenero(data.results);
+            }
             setTitulosBaseadosNoGenero(data.results);
-            console.log(data);
-            // https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc
         }
 
         pegarTitulosPorGenero();
@@ -33,7 +39,7 @@ const Generos = () => {
             <HeaderComponent />
             <div className='text-branco max-w-screen-lg mx-auto overflow-x-hidden p-5'>
                 {titulosBaseadosNoGenero.length > 0
-                    ? <ComponenteTitulosBusca valor={titulosBaseadosNoGenero} nomeDaSessao={`Resultado para "${generoUrl}"`} />
+                    ? <ComponenteTitulosBusca valor={titulosBaseadosNoGenero} midia={tipoDaMidia} nomeDaSessao={`Resultado para "${generoUrl}"`} />
                     : <></>}
                 <div className='flex items-center justify-between'>
                     <button onClick={() => {

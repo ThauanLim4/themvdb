@@ -9,15 +9,14 @@ import "swiper/css/effect-fade";
 import { GetByGenre, getPopularMovies, GetTrendingMovies, GetTrendingPeople, GetTrendingTv } from '@/utils/api';
 import React, { useState, useEffect } from 'react';
 import { ComponenteDeFilmes } from "./componentesPrincipais/ComponentePadraoParaFilmes/ComponenteFilmes";
-import { ComponenteGenerosDeFilmes } from './componentesPrincipais/ComponentePadraoParageneros/Generos';
 import { ComponenteAtores } from "./componentAtores/Atores";
+import { ComponenteGenerosDeFilmes } from "./componentesPrincipais/ComponentePadraoParageneros/Generos";
 
 
 register();
 
 export const ComponentePrincipal = () => {
     const [filmesPopulares, setFilmesPopulares] = useState([]);
-    const [filmesPorGenero, setFilmesPorGenero] = useState([]);
     const [filmesEmAlta, setFilmesEmAlta] = useState([]);
     const [seriesEmAlta, setSeriesEmAlta] = useState([]);
 
@@ -28,13 +27,6 @@ export const ComponentePrincipal = () => {
             setFilmesPopulares(filmes);
         }
         pegarFilmesPopulares();
-
-        const pegarFilmesPorGenero = async () => {
-            const genero = await GetByGenre();
-            setFilmesPorGenero(genero);
-        }
-        pegarFilmesPorGenero();
-
 
         const pegarTudoQueEstaEmAlta = async () => {
             const filmes = await GetTrendingMovies();
@@ -67,7 +59,7 @@ export const ComponentePrincipal = () => {
             </section>
 
             <section>
-                <ComponenteGenerosDeFilmes valor={filmesPorGenero} />
+                <ComponenteGenerosDeFilmes />
             </section>
 
             {/* Esta sessão é a que contém as séries em alta da semana. */}

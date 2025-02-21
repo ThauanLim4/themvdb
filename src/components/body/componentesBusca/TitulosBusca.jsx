@@ -7,7 +7,7 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 
 export const ComponenteTitulosBusca = ({ valor, midia }) => {
-    console.log("valor retornado: ", valor);
+    console.log("valor retornado: ", valor, midia);
 
     return (
         <section className="p-5 max-w-screen-xl mx-auto">
