@@ -6,11 +6,6 @@ export async function getPopularMovies() {
     return data.results;	
 }
 
-
-
-
-//Treding API
-
 export async function GetTrendingMovies() {
     const API_KEY = '6cab2673c87af7cea093eb14c8a77328';
     const BASE_URL = 'https://api.themoviedb.org/3';
