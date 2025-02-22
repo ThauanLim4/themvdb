@@ -1,10 +1,26 @@
+"use client"
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const CriarConta = () => {
+    const [token, setToken] = useState('');
+    useEffect(() => {
+        const criarUsuario = async () => {
+            const API_KEY = '6cab2673c87af7cea093eb14c8a77328';
+            const BASE_URL = 'https://api.themoviedb.org/3';
+            // https://www.themoviedb.org/authenticate/{REQUEST_TOKEN}?redirect_to=https://www.themoviedb.org/approved?request_token={REQUEST_TOKEN}
+            const response = await fetch(`${BASE_URL}/authentication/token/new?api_key=${API_KEY}`);
+            setToken(response.request_token);
+            const data = await response.json();
+            console.log(data);
+        }
+
+        criarUsuario();
+
+    }, [])
     return (
-        <div className='text-branco'>
-            <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className='text-branco p-5'>
+            <div class="px-4 py-16 sm:px-6 lg:px-8 bg-preto_escuro max-w-xl mx-auto rounded-lg shadow-sm shadow-laranja">
                 <div class="mx-auto max-w-lg text-center">
                     <h1 class="text-2xl font-bold sm:text-3xl">Vamos começar criando sua conta?</h1>
                     <p class="mt-4">
@@ -106,7 +122,7 @@ const CriarConta = () => {
                     <div class="flex items-center justify-between">
                         <p class="text-sm">
                             Já tem conta?
-                            <Link href={`pages/logar`}class="underline ml-1">entre já!</Link>
+                            <Link href={`pages/logar`} class="underline ml-1">entre já!</Link>
                         </p>
                         <button
                             class="inline-block rounded-lg bg-laranja px-5 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50"

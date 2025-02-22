@@ -26,8 +26,6 @@ export const ComponenteTitulosSemelhantes = ({ tituloMidiaTipo, tituloID }) => {
         pegarTitulosSemelhantes();
     })
 
-
-
     return (
         <div className="w-full max-w-screen-lg flex flex-col gap-3 my-5">
             <h2 className="text-2xl font-semibold text-laranja">Semelhantes</h2>
@@ -35,7 +33,6 @@ export const ComponenteTitulosSemelhantes = ({ tituloMidiaTipo, tituloID }) => {
                 <div className="flex justify-start overflow-x-auto py-5">
                     <Swiper
                         spaceBetween={10}
-                        slidesPerView={quantidade || 5}
                         freeMode={true}
                         navigation={{
                             nextEl: '.swiper-button-next',
