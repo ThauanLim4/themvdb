@@ -64,7 +64,7 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                                             <FaRegStar className="text-yellow-400" />
                                             {movie.vote_average && movie.vote_average !== undefined ? <p>{movie.vote_average.toFixed(1)}</p> : <p>sem avaliações</p>}
                                         </div>
-                                        <Link href={`/pages/detalhes?tm=${!movie.media_type ? 'movie' : 'tv'}&idt=${movie.id}`} className="text-lg text-laranja overflow-hidden whitespace-nowrap text-ellipsis">
+                                        <Link href={`/pages/detalhes?tm=${!movie.media_type ? 'movie' : 'tv'}&idt=${movie.id}`} className="text-lg text-laranja overflow-hidden whitespace-nowrap text-ellipsis truncate">
                                             {movie.title || movie.name}
                                         </Link >
                                         <p className="max-h-12 overflow-hidden text-xs mb-3">
