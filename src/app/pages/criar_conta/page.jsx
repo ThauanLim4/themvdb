@@ -42,7 +42,7 @@ const CriarConta = () => {
 
         try {
             setErroMensage('');
-            const response = await fetch('/api/users/', {
+            const response = await fetch('/api/users', {
                 headers: {
                     'Content-Type': 'application/json'
                 },
