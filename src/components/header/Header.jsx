@@ -1,17 +1,29 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useState } from "react";
+import { use, useContext, useState } from "react";
 import Logo from "../../img/logo.png";
 import { IoIosSearch } from "react-icons/io";
 import { FaRegUser, FaUser } from "react-icons/fa";
 import { VscBookmark } from "react-icons/vsc";
 import Link from "next/link";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { TokenContext } from "@/context/token";
+
+
 
 export const HeaderComponent = () => {
     const [inputFocus, setInputFocus] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const router = useRouter();
+    const token = useContext(TokenContext);
 
     return (
         <div className="flex items-center justify-center h-20 bg-preto_escuro text-branco max-h-12 border-b-2 border-black">
@@ -27,12 +39,28 @@ export const HeaderComponent = () => {
                                 <IoIosSearch className="text-xl" />
                             </form>
                         </li>
-                        <li className="hover:text-laranja transition-all duration-300 cursor-pointer">
-                            <Link href={`pages/logar`}>
-                                <VscBookmark className="text-xl" />
-                            </Link>
-                        </li>
-                        <li className="hover:text-laranja transition-all duration-300 cursor-pointer"><FaRegUser className="text-xl" /></li>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger>
+                                <li className="hover:text-laranja transition-all duration-300 cursor-pointer">
+                                    {token ? <FaUser className="text-xl text-laranja" /> : <FaRegUser className="text-xl" />}
+                                </li>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="bg-preto_escuro text-branco border border-black">
+                                <DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                {token
+                                    ? (<DropdownMenuItem className="hover:bg-laranja hover:text-black">
+                                        Perfil
+                                    </DropdownMenuItem>)
+                                    : (<Link href={"pages/logar"}>
+                                        <DropdownMenuItem className="hover:bg-laranja hover:text-black">Perfil</DropdownMenuItem>
+                                    </Link>)}
+                                <Link href={`pages/favoritos?token=${token}`}>
+                                    <DropdownMenuItem className="hover:bg-laranja hover:text-black">Favoritos</DropdownMenuItem>
+                                </Link>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+
                     </ul>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 const Logar = () => {
     const emailReg = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
@@ -45,7 +45,7 @@ const Logar = () => {
         if (findUser) {
             setUserInfos(findUser);
             setSuccessMensage('usuário encontrado!');
-
+            document.cookie = `token=${findUser.token}; path=/;`;
             setTimeout(() => {
                 router.push("/");
             }, 1000);

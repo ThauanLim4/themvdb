@@ -1,4 +1,5 @@
-import React from 'react';
+"use client";
+import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 import { GoInfo } from 'react-icons/go';
@@ -8,10 +9,58 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import '@/css/custom-swiper.css';
+import { TokenContext } from '@/context/token';
+import { PrismaClient } from '@prisma/client';
 
 export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
     const btnClasses = "max-sm:hidden max-md:hidden absolute top-2/4 w-24 h-24 p-3 rounded-lg bg-transparent items-center justify-center flex border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro duration-300 cursor-pointer active:scale-[0.98] z-10";
-    
+
+    const [usuarioInfos, setUsuariosInfos] = useState([])
+    const [favoritosDoUsuario, setFavoritosDoUsuario] = useState([]);
+    const token = useContext(TokenContext);
+
+    const prisma = new PrismaClient();
+
+    useEffect(() => {
+
+        const pegarUsuarios = async () => {
+            try {
+                const response = await fetch('/api/users');
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
+                const data = await response.json();
+                console.log(data)
+                const usuarioInfos = data.find(us => us.token === token);
+                setUsuariosInfos(usuarioInfos);
+                setFavoritosDoUsuario(usuarioInfos.favoritedTitles);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        pegarUsuarios();
+    }, []);
+
+
+
+    const adicionarALista = async (id, index) => {
+        console.log(id)
+        const response = await fetch('api/addlist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(id)
+        })
+
+        if(response.ok) {
+            console.log("titulo adicionado com sucesso")
+        } else {
+            console.log("deu ruim")
+        }
+    }
+
     return (
         <section className="p-5 max-w-screen-xl mx-auto">
             <h2 className="text-2xl font-bold text-laranja">{nomeDaSessao}</h2>
@@ -74,7 +123,7 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                                         </p>
 
                                         <div className="flex items-center justify-between">
-                                            <button onClick={() => alert('Funcionalidade em desenvolvimento')} className="w-32 h-7 rounded-lg bg-laranja text-branco text-sm flex justify-center items-center hover:bg-preto_escuro hover:border-2 border-laranja transition-all duration-300">
+                                            <button onClick={() => adicionarALista(movie.id, index)} className="w-32 h-7 rounded-lg bg-laranja text-branco text-sm flex justify-center items-center hover:bg-preto_escuro hover:border-2 border-laranja transition-all duration-300">
                                                 Inserir na Lista <IoIosAdd />
                                             </button>
                                             <button
