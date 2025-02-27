@@ -14,6 +14,7 @@ export async function GET() {
         return new Response(JSON.stringify({ error: "Erro ao buscar usuários" }), { status: 500 });
     }
 }
+
 export async function POST(request) {
     const { idTitulo, idUser, tipoMidia } = await request.json();
     
@@ -25,7 +26,9 @@ export async function POST(request) {
         const usuario = await prisma.user.update({
             where: {id: idUser},
             data: {
-                favoritedTitles: {idTitulo, tipoMidia}
+                favoritedTitles: {
+                    push: {idTitulo, tipoMidia}
+                }
             }
         });
         return new Response(JSON.stringify({ message: "Titulo adicionado com sucesso", usuario, status: 200 }));
@@ -34,3 +37,24 @@ export async function POST(request) {
     }
 }
 
+export async function DELETE(request) {
+    const { idTitulo, idUser, tipoMidia } = await request.json();
+    
+    if (!idTitulo || !idUser || !tipoMidia) {
+        return new Response(JSON.stringify({ error: "id é necessário" }), { status: 400 });
+    }
+    try {
+        console.log("entrou no try", idTitulo)
+        const usuario = await prisma.user.delete({
+            where: {id: idUser},
+            data: {
+                favoritedTitles: {
+                    DELETE: {idTitulo, tipoMidia}
+                }
+            }
+        });
+        return new Response(JSON.stringify({ message: "Titulo removido com sucesso", usuario, status: 200 }));
+    } catch (error) {
+        return new Response(JSON.stringify({ error: "Erro ao remover o titulo nos favoritos " + error }), { status: 500 });
+    }
+}

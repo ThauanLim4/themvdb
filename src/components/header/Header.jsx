@@ -18,7 +18,6 @@ import {
 import { TokenContext } from "@/context/token";
 
 
-
 export const HeaderComponent = () => {
     const [inputFocus, setInputFocus] = useState(false);
     const [searchValue, setSearchValue] = useState("");
@@ -58,6 +57,7 @@ export const HeaderComponent = () => {
                                 <Link href={`pages/favoritos?token=${token}`}>
                                     <DropdownMenuItem className="hover:bg-laranja hover:text-black">Favoritos</DropdownMenuItem>
                                 </Link>
+                                <DropdownMenuItem>Sair</DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
 

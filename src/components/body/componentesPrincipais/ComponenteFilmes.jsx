@@ -47,7 +47,7 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
             const idUser = usuarioInfos.id;
             const tipoMidia = midia === undefined ? "movie" : midia;
             try {
-                const idTitulo = id.toString();
+                const idTitulo = id?.toString();
                 console.log(idTitulo, idUser, midia);
                 const response = await fetch('api/addlist', {
                     method: 'POST',
