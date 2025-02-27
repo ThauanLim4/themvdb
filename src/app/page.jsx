@@ -1,11 +1,16 @@
 "use client";
 import { HeaderComponent } from "@/components/header/Header";
 import { ComponentePrincipal } from "@/components/body/ConteinerPrincipal";
-import { createContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { TokenContext } from "@/context/token";
 
 export default function Home() {
-  const [token, setToken] = useState(document.cookie.split('=')[1]);
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    setToken(document.cookie.split('=')[1])
+  }, []);
+
   console.log(token)
 
   return (

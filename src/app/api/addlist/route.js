@@ -15,20 +15,24 @@ export async function GET() {
     }
 }
 export async function POST(request) {
-    const { id } = await request.json();
-
-    if (!id) {
+    const { idTitulo, idUser } = await request.json();
+    
+    if (!idTitulo || !idUser) {
         return new Response(JSON.stringify({ error: "id é necessário" }), { status: 400 });
     }
     try {
-        const usuario = await prisma.user.create({
+        console.log("entrou no try", idTitulo)
+        const usuario = await prisma.user.update({
+            where: {id: idUser},
             data: {
-                favoritedTitles: id
+                favoritedTitles: {
+                    push: [idTitulo]
+                }
             }
         });
         return new Response(JSON.stringify({ message: "Titulo adicionado com sucesso", usuario, status: 200 }));
     } catch (error) {
-        return new Response(JSON.stringify({ error: "Erro ao adicionar o titulo nos favoritos " + id }), { status: 500 });
+        return new Response(JSON.stringify({ error: "Erro ao adicionar o titulo nos favoritos " + error }), { status: 500 });
     }
 }
 

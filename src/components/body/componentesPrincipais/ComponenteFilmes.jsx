@@ -10,16 +10,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import '@/css/custom-swiper.css';
 import { TokenContext } from '@/context/token';
-import { PrismaClient } from '@prisma/client';
 
 export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
     const btnClasses = "max-sm:hidden max-md:hidden absolute top-2/4 w-24 h-24 p-3 rounded-lg bg-transparent items-center justify-center flex border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro duration-300 cursor-pointer active:scale-[0.98] z-10";
+    const token = useContext(TokenContext);
 
     const [usuarioInfos, setUsuariosInfos] = useState([])
     const [favoritosDoUsuario, setFavoritosDoUsuario] = useState([]);
-    const token = useContext(TokenContext);
-
-    const prisma = new PrismaClient();
 
     useEffect(() => {
 
@@ -30,10 +27,10 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                     throw new Error(response.statusText);
                 }
                 const data = await response.json();
-                console.log(data)
-                const usuarioInfos = data.find(us => us.token === token);
-                setUsuariosInfos(usuarioInfos);
-                setFavoritosDoUsuario(usuarioInfos.favoritedTitles);
+                const usuario = data.find(us => us.token === token);
+                console.log("resultado:", usuario);
+                setUsuariosInfos(usuario);
+                setFavoritosDoUsuario(usuario.favoritedTitles);
             } catch (error) {
                 console.log(error);
             }
@@ -44,20 +41,24 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
 
 
 
-    const adicionarALista = async (id, index) => {
-        console.log(id)
-        const response = await fetch('api/addlist', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(id)
-        })
+    const adicionarALista = async (id) => {
+        const idUser = usuarioInfos.id;
+        try {
+            const idTitulo = id.toString();
+            console.log(idTitulo, idUser);
+            const response = await fetch('api/addlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ idUser, idTitulo })
+            })
 
-        if(response.ok) {
-            console.log("titulo adicionado com sucesso")
-        } else {
-            console.log("deu ruim")
+            if (response.ok) {
+                console.log("titulo adicionado com sucesso")
+            } 
+        } catch (erro) {
+            console.log("deu ruim", erro)
         }
     }
 
