@@ -1,4 +1,3 @@
-import { Skeleton } from '@/components/ui/skeleton'
 import Link from 'next/link'
 import React from 'react'
 import { FaRegStar } from 'react-icons/fa'

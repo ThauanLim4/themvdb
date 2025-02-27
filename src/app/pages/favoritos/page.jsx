@@ -1,6 +1,7 @@
 'use client';
 import { ComponenteDeTitulosFavoritados } from '@/components/body/componentesFavorito/ComponenteTitulosFav';
 import { HeaderComponent } from '@/components/header/Header'
+import { ComponentLoading } from '@/components/ui/loading/Loading';
 import { useSearchParams } from 'next/navigation';
 import React, { Suspense, useEffect, useState } from 'react'
 
@@ -67,9 +68,10 @@ export const Favoritos = () => {
         <>
             <HeaderComponent />
             <div className='max-w-screen-lg mx-auto'>
-                {titulosFavoritos.length > 0 ? (
-                    <ComponenteDeTitulosFavoritados valor={titulosFavoritos} midia={midia}  />
-                ) : <p>nenhum ítem foi adicionado aos favoritos ainda...</p>}
+                {titulosFavoritos.length > 0
+                    ? <ComponenteDeTitulosFavoritados valor={titulosFavoritos} midia={midia} />
+                    : <ComponentLoading />
+                }
             </div>
         </>
     )

@@ -1,9 +1,9 @@
 "use client";
 import { ComponenteTitulosBusca } from '@/components/body/componentesBusca/TitulosBusca';
-import { HeaderComponent } from '@/components/header/Header';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import { ComponentHeaderNavigation } from '@/components/header/HeaderNavigation';
 
 const Generos = () => {
     const [generoUrl, setGeneroUrl] = useState("");
@@ -36,7 +36,7 @@ const Generos = () => {
     }, [paginaAtual])
     return (
         <>
-            <HeaderComponent />
+            <ComponentHeaderNavigation sessionName={`Gênero de ${generoUrl}`} />
             <div className='text-branco max-w-screen-lg mx-auto overflow-x-hidden p-5'>
                 {titulosBaseadosNoGenero.length > 0
                     ? <ComponenteTitulosBusca valor={titulosBaseadosNoGenero} midia={tipoDaMidia} nomeDaSessao={`Resultado para "${generoUrl}"`} />

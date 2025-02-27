@@ -6,8 +6,8 @@ import { ComponenteTituloInformacoes } from "@/components/body/componentesDetalh
 import '@/css/custom-swiper.css';
 import 'swiper/css';
 import { ComponenteTituloMidias } from "@/components/body/componentesDetalhes/midias/TituloMidias";
-import { HeaderComponent } from "@/components/header/Header";
 import { ComponenteEpisodiosTitulo } from "@/components/body/componentesDetalhes/episodios/episodiosTitulo";
+import { ComponentHeaderNavigation } from "@/components/header/HeaderNavigation";
 
 const PaginaDetalhadaDosItens = () => {
     const [detalhesDoTitulo, setDetalhesDoTitulo] = useState([]);
@@ -38,7 +38,7 @@ const PaginaDetalhadaDosItens = () => {
 
     return (
         <>
-            <HeaderComponent />
+            <ComponentHeaderNavigation sessionName="Detalhes" />
 
             <div className="text-white max-w-screen-lg mx-auto p-5">
                 {/* <ComponenteDetalhesDoTitulo valor={DetalhesDoTitulo} nomeDaSessao="Detalhes" /> */}

@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@/components/ui/shadcn/skeleton';
 import { GoInfo } from 'react-icons/go';
 import { FaChevronLeft, FaChevronRight, FaRegStar } from 'react-icons/fa';
 import { IoIosAdd } from 'react-icons/io';

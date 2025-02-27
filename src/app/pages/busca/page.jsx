@@ -4,8 +4,8 @@ import { ComponenteTitulosBusca } from "@/components/body/componentesBusca/Titul
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
 import "../../globals.css";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, } from "@/components/ui/sheet"
-import { HeaderComponent } from "@/components/header/Header";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, } from "@/components/ui/shadcn/sheet";
+import { ComponentHeaderNavigation } from "@/components/header/HeaderNavigation";
 
 const PaginaDePesquisa = () => {
   const [resultado, setResultado] = useState("");
@@ -44,7 +44,7 @@ const PaginaDePesquisa = () => {
 
   return (
     <>
-      <HeaderComponent />
+      <ComponentHeaderNavigation sessionName="Busca" />
       <div className="text-branco max-w-screen-lg mx-auto overflow-x-hidden p-5">
         <div className="w-full">
           <div className='flex items-center justify-between'>

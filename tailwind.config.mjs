@@ -72,11 +72,13 @@ export default {
   		height: {
   			425: '425px',
 			24: "24px",
-			128: "128px"
+			128: "128px",
+			80: '80px',
   		},
 		width: {
 			24: '24px',
 			128: "128px",
+			80: '80px',
 		},
   		maxHeight: {
   			50: '50px',
