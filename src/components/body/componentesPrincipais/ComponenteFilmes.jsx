@@ -7,7 +7,6 @@ import { FaChevronLeft, FaChevronRight, FaRegStar } from 'react-icons/fa';
 import { IoIosAdd } from 'react-icons/io';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import '@/css/custom-swiper.css';
 import { TokenContext } from '@/context/token';
 
@@ -16,7 +15,6 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
     const token = useContext(TokenContext);
 
     const [usuarioInfos, setUsuariosInfos] = useState([])
-    const [favoritosDoUsuario, setFavoritosDoUsuario] = useState([]);
 
     useEffect(() => {
 
@@ -27,38 +25,45 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                     throw new Error(response.statusText);
                 }
                 const data = await response.json();
-                const usuario = data.find(us => us.token === token);
-                console.log("resultado:", usuario);
-                setUsuariosInfos(usuario);
-                setFavoritosDoUsuario(usuario.favoritedTitles);
+                console.log("data:", data);
+                if (data) {
+                    const usuario = data.find(us => us.token === token);
+                    console.log("resultado:", usuario);
+                    setUsuariosInfos(usuario);
+                }
             } catch (error) {
                 console.log(error);
             }
         }
 
         pegarUsuarios();
-    }, []);
+    }, [token]);
 
 
 
-    const adicionarALista = async (id) => {
-        const idUser = usuarioInfos.id;
-        try {
-            const idTitulo = id.toString();
-            console.log(idTitulo, idUser);
-            const response = await fetch('api/addlist', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ idUser, idTitulo })
-            })
+    const adicionarALista = async (id, midia) => {
+        if (usuarioInfos) {
+            console.log(usuarioInfos)
+            const idUser = usuarioInfos.id;
+            const tipoMidia = midia === undefined ? "movie" : midia;
+            try {
+                const idTitulo = id.toString();
+                console.log(idTitulo, idUser, midia);
+                const response = await fetch('api/addlist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ idUser, idTitulo, tipoMidia })
+                })
 
-            if (response.ok) {
-                console.log("titulo adicionado com sucesso")
-            } 
-        } catch (erro) {
-            console.log("deu ruim", erro)
+                if (response.ok) {
+                    console.log("titulo adicionado com sucesso")
+                }
+            } catch (erro) {
+                console.log("deu ruim", erro)
+            }
+
         }
     }
 
@@ -124,7 +129,7 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                                         </p>
 
                                         <div className="flex items-center justify-between">
-                                            <button onClick={() => adicionarALista(movie.id, index)} className="w-32 h-7 rounded-lg bg-laranja text-branco text-sm flex justify-center items-center hover:bg-preto_escuro hover:border-2 border-laranja transition-all duration-300">
+                                            <button onClick={() => adicionarALista(movie.id, movie.media_type)} className="w-32 h-7 rounded-lg bg-laranja text-branco text-sm flex justify-center items-center hover:bg-preto_escuro hover:border-2 border-laranja transition-all duration-300">
                                                 Inserir na Lista <IoIosAdd />
                                             </button>
                                             <button

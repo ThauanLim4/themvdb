@@ -18,8 +18,6 @@ const CriarConta = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    const router = useRouter();
-
     const [createdUserSuccessfull, setCreatedUserSuccessfull] = useState(false);
 
     const [successMensage, setSuccessMensage] = useState('');

@@ -15,9 +15,9 @@ export async function GET() {
     }
 }
 export async function POST(request) {
-    const { idTitulo, idUser } = await request.json();
+    const { idTitulo, idUser, tipoMidia } = await request.json();
     
-    if (!idTitulo || !idUser) {
+    if (!idTitulo || !idUser || !tipoMidia) {
         return new Response(JSON.stringify({ error: "id é necessário" }), { status: 400 });
     }
     try {
@@ -25,9 +25,7 @@ export async function POST(request) {
         const usuario = await prisma.user.update({
             where: {id: idUser},
             data: {
-                favoritedTitles: {
-                    push: [idTitulo]
-                }
+                favoritedTitles: {idTitulo, tipoMidia}
             }
         });
         return new Response(JSON.stringify({ message: "Titulo adicionado com sucesso", usuario, status: 200 }));
