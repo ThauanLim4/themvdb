@@ -9,7 +9,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/shadcn/dialog"
 import { ChevronRight, ChevronsRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
