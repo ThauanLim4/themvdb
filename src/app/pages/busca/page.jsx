@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { ComponenteTitulosBusca } from "@/components/body/componentesBusca/TitulosBusca";
+import { ComponentSearchTitles } from "@/components/body/componentesBusca/SearchTitles";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
 import "../../globals.css";
@@ -13,6 +13,8 @@ const PaginaDePesquisa = () => {
   const [tipoDaMidia, setTipoDaMidia] = useState("movie");
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [limiteDePaginasAlcancado, setLimiteDePaginasAlcancado] = useState(false);
+
+  const [disableButton, setDisableButton] = useState(false);
 
   const mudarMidia = (midia) => {
     console.log("midia alterada!", midia)
@@ -40,6 +42,18 @@ const PaginaDePesquisa = () => {
     pegarResultadoDaBusca();
   }, [tipoDaMidia, paginaAtual]);
 
+  const prevPage = () => {
+    if (paginaAtual > 1) {
+      setPaginaAtual(paginaAtual - 1);
+    } else {
+      setDisableButton(true);
+    }
+  }
+
+  const nextPage = () => {
+    setPaginaAtual(paginaAtual + 1);
+    setDisableButton(false)
+  }
 
 
   return (
@@ -50,7 +64,7 @@ const PaginaDePesquisa = () => {
           <div className='flex items-center justify-between'>
             <h2 className="text-2xl font-bold text-laranja">Resultado para "{resultado}"</h2>
             <Sheet>
-              <SheetTrigger><FaFilter /></SheetTrigger>
+              <SheetTrigger><FaFilter className="hover:text-laranja transition-all duration-300" /></SheetTrigger>
               <SheetContent className="overflow-x-hidden" >
                 <SheetHeader>
                   <SheetTitle>Filtros</SheetTitle>
@@ -59,11 +73,11 @@ const PaginaDePesquisa = () => {
                     <div className="radio-inputs mt-5 flex max-sm:max-w-64">
                       <label className="radio">
                         <input onClick={() => mudarMidia("movie")} type="radio" name="radio" checked={tipoDaMidia === "movie"} />
-                        <span className="name">Filmes</span>
+                        <span className={`name ${tipoDaMidia === "movie" ? "bg-laranja text-preto_escuro" : ""}`}>Filmes</span>
                       </label>
                       <label className="radio">
                         <input onClick={() => mudarMidia("tv")} type="radio" name="radio" checked={tipoDaMidia === "tv"} />
-                        <span className="name">Séries</span>
+                        <span className={`name ${tipoDaMidia === "tv" ? "bg-laranja text-preto_escuro" : ""}`}>Séries</span>
                       </label>
                     </div>
                   </SheetDescription>
@@ -72,26 +86,19 @@ const PaginaDePesquisa = () => {
             </Sheet>
           </div>
 
-          {titulosRetornados.length > 0 ? <ComponenteTitulosBusca valor={titulosRetornados} midia={tipoDaMidia} /> : <></>}
+          {titulosRetornados.length > 0 ? <ComponentSearchTitles valor={titulosRetornados} midia={tipoDaMidia} /> : <></>}
 
-          <div className="flex items-center justify-center gap-5">
-            <div onClick={() => {
-              if (paginaAtual === 1) return
-              else { setPaginaAtual(paginaAtual - 1) }
-            }} className={`w-24 rounded-sm bg-transparent items-center justify-center flex border-2 duration-300 cursor-pointer active:scale-[0.98] 
-          ${paginaAtual === 1 ? "border-preto_claro text-preto_claro"
-                : "border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro"}`}>
-              <button className="px-5 py-2"><FaChevronLeft /></button>
-            </div>
+          <div className="flex items-center justify-between gap-5">
+            <button onClick={() => prevPage()} disabled={disableButton} className={`flex items-center gap-2 px-2 py-1 rounded-lg ${paginaAtual === 1
+              ? "border-2 border-gray-500/50 text-foreground cursor-not-allowed bg-gray-500/50"
+              : "text-preto_escuro bg-laranja border-2 border-laranja  hover:bg-transparent hover:text-laranja transition-all duration-300"
+              } `}>
+              <FaChevronLeft /> Voltar</button>
 
+            <h3 className="flex flex-row items-center justify-center h-9 font-bold">Página {paginaAtual}</h3>
 
-            <h3 className="w-24 flex items-center justify-center h-9 font-bold">{paginaAtual}</h3>
+            <button onClick={() => nextPage()} className='flex items-center gap-3 text-preto_escuro bg-laranja border-2 border-laranja px-2 py-1 rounded-lg hover:bg-transparent hover:text-laranja transition-all duration-300'>Próximo <FaChevronRight /></button>
 
-
-            <div onClick={() => setPaginaAtual(paginaAtual + 1)}
-              className={`w-24 ${limiteDePaginasAlcancado ? "border-preto_claro text-preto_claro" : "border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro"} rounded-sm bg-transparent items-center justify-center flex duration-300 active:scale-[0.98]`}>
-              <button className="px-5 py-2"><FaChevronRight /></button>
-            </div>
           </div>
 
         </div>

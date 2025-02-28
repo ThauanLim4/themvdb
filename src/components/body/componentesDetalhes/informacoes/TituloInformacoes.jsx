@@ -35,7 +35,7 @@ export const ComponenteTituloInformacoes = ({ valor }) => {
                         valor.genres.map((genre, index) => {
                             return (
                                 <Link href={`/pages/generos?genero=${genre.name}&id=${genre.id}`} key={index} className='flex gap-2 py-2'>
-                                    <p className=" text-center border border-preto_claro rounded-md px-2 py-1 font-semibold hover:border-laranja hover:text-laranja transtition duration-300" key={index}>{genre.name}</p>
+                                    <p className="text-center border-2 rounded-md px-2 py-1 font-semibold bg-laranja text-preto_escuro border-laranja hover:text-laranja hover:bg-transparent transtition duration-300" key={index}>{genre.name}</p>
                                 </Link>
                             )
                         })

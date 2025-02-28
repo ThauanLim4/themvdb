@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { GoInfo } from 'react-icons/go';
 import { FaRegStar } from 'react-icons/fa';
 import { IoIosAdd } from 'react-icons/io';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 
-export const ComponenteTitulosBusca = ({ valor, midia }) => {
+export const ComponentSearchTitles = ({ valor, midia }) => {
     console.log("valor retornado: ", valor, midia);
 
     return (
@@ -43,17 +41,9 @@ export const ComponenteTitulosBusca = ({ valor, midia }) => {
                                     </p>
 
                                     <div className="flex items-center justify-between">
-                                        <button onClick={() => alert('Funcionalidade em desenvolvimento')} className="w-32 h-7 rounded-lg bg-laranja text-branco text-sm flex justify-center items-center hover:bg-preto_escuro hover:border-2 border-laranja transition-all duration-300">
+                                        <button onClick={() => alert('Funcionalidade em desenvolvimento')} className="w-32 h-7 rounded-lg bg-laranja text-preto_escuro text-sm flex justify-center items-center hover:bg-transparent hover:text-laranja border-2 border-laranja transition-all duration-300">
                                             Inserir na Lista <IoIosAdd />
                                         </button>
-                                        <button
-                                            data-tooltip-id="tooltip-mais-infos"
-                                            data-tooltip-content="Mais Informações"
-                                            className="text-laranja font-medium"
-                                        >
-                                            <GoInfo />
-                                        </button>
-                                        <ReactTooltip id="tooltip-mais-infos" place="right" />
                                     </div>
                                 </div>
                             </div>

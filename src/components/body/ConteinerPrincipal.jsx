@@ -42,28 +42,27 @@ export const ComponentePrincipal = () => {
 
     return (
         <div>
-            {/* Esta sessão é a sessão principal da página inicial. Aqui contém os filmes mais populares. */}
+            <section>
+                {/* Componente de gêneros de filmes */}
+                <ComponenteGenerosDeFilmes />
+            </section>
 
             <section>
+                {/* Esta sessão é a sessão principal da página inicial. Aqui contém os filmes mais populares. */}
                 <ComponenteDeFilmes valor={filmesPopulares} nomeDaSessao="Mais Populares" />
             </section>
 
             <section>
+                {/* Esta sessão é a que contém as séries em alta da semana. */}
                 <ComponenteDeFilmes valor={seriesEmAlta} nomeDaSessao={"Séries em alta da semana"} />
             </section>
-
-            {/* Esta é a sessão onde contém os filmes divididos por gênero. */}
 
             <section>
                 <ComponenteAtores />
             </section>
 
-            <section>
-                <ComponenteGenerosDeFilmes />
-            </section>
-
             {/* Esta sessão é a que contém as séries em alta da semana. */}
-{/*             
+            {/*             
             <section>
                 <ComponenteDeFilmes valor={filmesEmAlta} nomeDaSessao={"Filmes em alta da semana"} />
             </section> */}

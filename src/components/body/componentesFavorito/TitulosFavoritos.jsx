@@ -1,12 +1,70 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { GoInfo } from 'react-icons/go';
 import { FaRegStar } from 'react-icons/fa';
 import { IoMdRemove } from 'react-icons/io';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 export const ComponenteDeTitulosFavoritados = ({ valor, midia }) => {
-    console.log("valor retornado: ", valor, midia);
+    const [usuarioInfos, setUsuariosInfos] = useState([]);
+    const params = useSearchParams();
+    const router = useRouter();
+
+    useEffect(() => {
+        const token = params.get('token');
+
+        if (token) {
+            const pegarUsuarios = async () => {
+                try {
+                    const response = await fetch('/api/users');
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    const data = await response.json();
+                    console.log("data:", data);
+                    if (data) {
+                        const usuario = data.find(us => us.token === token);
+                        console.log("resultado:", usuario);
+                        setUsuariosInfos(usuario);
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+
+            pegarUsuarios();
+        } else {
+            console.log("token não existe")
+        }
+    }, []);
+
+
+
+    const removerItemDaLista = async (id, midia) => {
+        if (usuarioInfos) {
+            console.log(usuarioInfos)
+            const idUser = usuarioInfos.id;
+            const tipoMidia = midia === undefined ? "movie" : midia;
+            try {
+                const idTitulo = id?.toString();
+                console.log(idTitulo, idUser, tipoMidia);
+                const response = await fetch('/api/addlist', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ idUser, idTitulo, tipoMidia })
+                })
+
+                if (response.ok) {
+                    console.log("titulo removido com sucesso com sucesso");
+                    router.refresh();
+                }
+            } catch (erro) {
+                console.log(erro)
+            }
+
+        }
+    }
 
     return (
         <section className="p-5 max-w-screen-xl mx-auto">
@@ -42,17 +100,9 @@ export const ComponenteDeTitulosFavoritados = ({ valor, midia }) => {
                                     </p>
 
                                     <div className="flex items-center justify-between">
-                                        <button onClick={() => removerItemDaLista(movie.id)} className="w-32 h-7 rounded-lg bg-transparent text-branco text-sm flex justify-center items-center hover:bg-destructive hover:border-destructive border-2 border-laranja transition-all duration-300">
+                                        <button onClick={() => removerItemDaLista(movie.id, movie.media_type)} className="w-32 h-7 rounded-lg bg-transparent text-branco text-sm flex justify-center items-center hover:bg-destructive hover:border-destructive border-2 border-laranja transition-all duration-300">
                                             remover da Lista <IoMdRemove className='text-white' />
                                         </button>
-                                        <button
-                                            data-tooltip-id="tooltip-mais-infos"
-                                            data-tooltip-content="Mais Informações"
-                                            className="text-laranja font-medium"
-                                        >
-                                            <GoInfo />
-                                        </button>
-                                        <ReactTooltip id="tooltip-mais-infos" place="right" />
                                     </div>
                                 </div>
                             </div>

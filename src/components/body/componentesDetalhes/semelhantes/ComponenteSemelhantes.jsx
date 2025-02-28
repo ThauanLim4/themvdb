@@ -83,17 +83,9 @@ export const ComponenteTitulosSemelhantes = ({ tituloMidiaTipo, tituloID }) => {
                                             {movie.overview.length === 0 ? 'Sem Sinopse' : ''}
                                         </p>
                                         <div className="flex items-center justify-between">
-                                            <button onClick={() => alert('Funcionalidade em desenvolvimento')} className="w-32 h-7 rounded-lg bg-laranja text-branco text-sm flex justify-center items-center hover:bg-preto_escuro hover:border-2 border-laranja transition-all duration-300">
+                                            <button onClick={() => alert('Funcionalidade em desenvolvimento')} className="w-32 h-7 rounded-lg bg-laranja text-preto_claro text-sm flex justify-center items-center hover:bg-transparent hover:text-laranja border-2 border-laranja transition-all duration-300">
                                                 Inserir na Lista <IoIosAdd />
                                             </button>
-                                            <button
-                                                data-tooltip-id="tooltip-mais-infos"
-                                                data-tooltip-content="Mais Informações"
-                                                className="text-laranja font-medium"
-                                            >
-                                                <GoInfo />
-                                            </button>
-                                            <ReactTooltip id="tooltip-mais-infos" place="right" />
                                         </div>
                                     </div>
                                 </div>

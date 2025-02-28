@@ -32,7 +32,7 @@ export const ComponentDropdownMenu = ({ token }) => {
     useEffect(() => {
         if (fazerLogoff) {
             document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            router.refresh();
+            document.location.reload();
         }
         const getUserInfos = async () => {
             try {
@@ -53,7 +53,7 @@ export const ComponentDropdownMenu = ({ token }) => {
         }
 
         getUserInfos();
-    }, [token]);
+    }, [token, fazerLogoff]);
 
     return (
         <>
@@ -76,9 +76,13 @@ export const ComponentDropdownMenu = ({ token }) => {
                             : (<Link href={"pages/logar"}>
                                 <DropdownMenuItem className="hover:bg-laranja hover:text-black">Perfil</DropdownMenuItem>
                             </Link>)}
-                        <Link href={`pages/favoritos?token=${token}`}>
-                            <DropdownMenuItem className="hover:bg-laranja hover:text-black">Favoritos</DropdownMenuItem>
-                        </Link>
+                        {token
+                            ? <Link href={`pages/favoritos?token=${token}`}>
+                                <DropdownMenuItem className="hover:bg-laranja hover:text-black">Favoritos</DropdownMenuItem>
+                            </Link>
+                            : <Link href={`pages/logar`}>
+                                <DropdownMenuItem className="hover:bg-laranja hover:text-black">Favoritos</DropdownMenuItem>
+                            </Link>}
                         <DropdownMenuItem onClick={() => setFazerLogoff(true)}>Sair</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

@@ -1,6 +1,7 @@
 'use client';
-import { ComponenteDeTitulosFavoritados } from '@/components/body/componentesFavorito/ComponenteTitulosFav';
+import { ComponenteDeTitulosFavoritados } from '@/components/body/componentesFavorito/TitulosFavoritos';
 import { HeaderComponent } from '@/components/header/Header'
+import { ComponentHeaderNavigation } from '@/components/header/HeaderNavigation';
 import { ComponentLoading } from '@/components/ui/loading/Loading';
 import { useSearchParams } from 'next/navigation';
 import React, { Suspense, useEffect, useState } from 'react'
@@ -66,8 +67,9 @@ export const Favoritos = () => {
 
     return (
         <>
-            <HeaderComponent />
+            <ComponentHeaderNavigation sessionName={"Favoritos"}  />
             <div className='max-w-screen-lg mx-auto'>
+                <h2 className='text-2xl font-bold text-laranja p-5'>Títulos Favoritados</h2>
                 {titulosFavoritos.length > 0
                     ? <ComponenteDeTitulosFavoritados valor={titulosFavoritos} midia={midia} />
                     : <ComponentLoading />
@@ -79,7 +81,7 @@ export const Favoritos = () => {
 
 const PaginaFavoritos = () => {
     return (
-        <Suspense fallback={<div>Carregando...</div>}>
+        <Suspense fallback={<ComponentLoading />}>
             <Favoritos />
         </Suspense>
     )

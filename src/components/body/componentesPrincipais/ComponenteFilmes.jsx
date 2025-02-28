@@ -1,13 +1,11 @@
 "use client";
+import '@/css/custom-swiper.css';
 import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/shadcn/skeleton';
-import { GoInfo } from 'react-icons/go';
 import { FaChevronLeft, FaChevronRight, FaRegStar } from 'react-icons/fa';
 import { IoIosAdd } from 'react-icons/io';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import '@/css/custom-swiper.css';
 import { TokenContext } from '@/context/token';
 
 export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
@@ -28,7 +26,6 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                 console.log("data:", data);
                 if (data) {
                     const usuario = data.find(us => us.token === token);
-                    console.log("resultado:", usuario);
                     setUsuariosInfos(usuario);
                 }
             } catch (error) {
@@ -61,7 +58,7 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                     console.log("titulo adicionado com sucesso")
                 }
             } catch (erro) {
-                console.log("deu ruim", erro)
+                console.log(erro)
             }
 
         }
@@ -129,17 +126,9 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                                         </p>
 
                                         <div className="flex items-center justify-between">
-                                            <button onClick={() => adicionarALista(movie.id, movie.media_type)} className="w-32 h-7 rounded-lg bg-laranja text-branco text-sm flex justify-center items-center hover:bg-preto_escuro hover:border-2 border-laranja transition-all duration-300">
+                                            <button onClick={() => adicionarALista(movie.id, movie.media_type)} className="w-32 h-7 rounded-lg bg-laranja text-preto_escuro text-sm flex justify-center items-center hover:bg-transparent hover:text-laranja border-2 border-laranja transition-all duration-300">
                                                 Inserir na Lista <IoIosAdd />
                                             </button>
-                                            <button
-                                                data-tooltip-id="tooltip-mais-infos"
-                                                data-tooltip-content="Mais Informações"
-                                                className="text-laranja font-medium"
-                                            >
-                                                <GoInfo />
-                                            </button>
-                                            <ReactTooltip id="tooltip-mais-infos" place="right" />
                                         </div>
                                     </div>
                                 </div>
