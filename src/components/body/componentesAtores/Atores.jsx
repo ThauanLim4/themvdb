@@ -11,7 +11,6 @@ export const ComponenteAtores = () => {
     const pegarAtores = async () => {
       const atores = await pegarAtoresPopulares();
       setAtores(atores);
-      console.log(atores);
     }
     pegarAtores();
   }, []);

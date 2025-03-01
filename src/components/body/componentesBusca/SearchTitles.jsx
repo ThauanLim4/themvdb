@@ -5,8 +5,6 @@ import { IoIosAdd } from 'react-icons/io';
 
 
 export const ComponentSearchTitles = ({ valor, midia }) => {
-    console.log("valor retornado: ", valor, midia);
-
     return (
         <section className="p-5 max-w-screen-xl mx-auto">
 

@@ -27,7 +27,6 @@ export const ComponentFormCreateAccount = () => {
 
     const router = useRouter();
     const criarConta = async () => {
-        console.log("nome: ", nome, "email", email, "senha:", senha)
         const emailReg = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
 
         if (email.length === 0 || senha.length === 0 || nome.length === 0) {

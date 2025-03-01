@@ -20,10 +20,8 @@ export const ComponenteDeTitulosFavoritados = ({ valor, midia }) => {
                         throw new Error(response.statusText);
                     }
                     const data = await response.json();
-                    console.log("data:", data);
                     if (data) {
                         const usuario = data.find(us => us.token === token);
-                        console.log("resultado:", usuario);
                         setUsuariosInfos(usuario);
                     }
                 } catch (error) {
@@ -41,12 +39,10 @@ export const ComponenteDeTitulosFavoritados = ({ valor, midia }) => {
 
     const removerItemDaLista = async (id, midia) => {
         if (usuarioInfos) {
-            console.log(usuarioInfos)
             const idUser = usuarioInfos.id;
             const tipoMidia = midia === undefined ? "movie" : midia;
             try {
                 const idTitulo = id?.toString();
-                console.log(idTitulo, idUser, tipoMidia);
                 const response = await fetch('/api/addlist', {
                     method: 'DELETE',
                     headers: {

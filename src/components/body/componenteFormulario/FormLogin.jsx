@@ -48,7 +48,7 @@ export const ComponentFormLogin = () => {
 
     const heandlerVerifyLogin = () => {
         if (!emailReg.test(email)) {
-            console.log('Email inválido');
+            setErroMensage('Email inválido');
             return;
         }
         console.log("usuários:", users);
