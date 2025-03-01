@@ -4,7 +4,6 @@ import { FaRegStar } from 'react-icons/fa'
 import { IoPeopleSharp } from 'react-icons/io5'
 
 export const ComponenteTituloInformacoes = ({ valor }) => {
-    console.log("valor que está chegando em titulo unformaçoes:", valor)
     return (
         <>
             <div>

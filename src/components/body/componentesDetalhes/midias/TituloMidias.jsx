@@ -19,9 +19,6 @@ export const ComponenteTituloMidias = ({ valor, tituloID, tituloMidiaTipo }) => 
             const dataImages = await responseImages.json();
             const dataVideos = await responseVideos.json();
 
-            console.log("videos:", dataVideos);
-            console.log("imagens", dataImages)
-
             setTituloImagens(dataImages.backdrops);
             setTituloVideos(dataVideos.results);
         }

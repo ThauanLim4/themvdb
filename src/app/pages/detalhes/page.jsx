@@ -18,7 +18,6 @@ const PaginaDetalhadaDosItens = () => {
     useEffect(() => {
         const tipoDaMidia = window.location.search.split('=')[1].split("&")[0];
         const id = window.location.search.split('=')[2];
-        console.log("id:", id)
         setResultadoId(id);
         setResultadoMidia(tipoDaMidia);
         const pegarDetalhesDoTitulo = async () => {
@@ -30,9 +29,7 @@ const PaginaDetalhadaDosItens = () => {
             const dataSemelhantes = await responseSemelhantes.json();
             setDetalhesDoTitulo([data]);
             setTitulosSemelhantes(dataSemelhantes.results);
-
-            console.log(data);
-        }
+        };
         pegarDetalhesDoTitulo();
     }, []);
 

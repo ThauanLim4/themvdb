@@ -23,7 +23,6 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                     throw new Error(response.statusText);
                 }
                 const data = await response.json();
-                console.log("data:", data);
                 if (data) {
                     const usuario = data.find(us => us.token === token);
                     setUsuariosInfos(usuario);
@@ -40,12 +39,10 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
 
     const adicionarALista = async (id, midia) => {
         if (usuarioInfos) {
-            console.log(usuarioInfos)
             const idUser = usuarioInfos.id;
             const tipoMidia = midia === undefined ? "movie" : midia;
             try {
                 const idTitulo = id?.toString();
-                console.log(idTitulo, idUser, midia);
                 const response = await fetch('api/addlist', {
                     method: 'POST',
                     headers: {
@@ -58,7 +55,6 @@ export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
                     console.log("titulo adicionado com sucesso")
                 }
             } catch (erro) {
-                console.log(erro)
             }
 
         }

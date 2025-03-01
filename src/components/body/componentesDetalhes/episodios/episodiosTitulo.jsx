@@ -17,12 +17,9 @@ export const ComponenteEpisodiosTitulo = ({ valor, tituloID }) => {
             const responseImagesTemporada = await fetch(`${BASE_URL}/tv/${tituloID.trim(" ")}/season/${temporadaNumero}/images?api_key=${API_KEY}`);
             const data = await response.json();
             if (response.ok !== true) {
-                console.log("retornando falso");
                 return setTemporadaNumero(temporadaNumero - 1);
             }
             const dataImagems = await responseImagesTemporada.json();
-            console.log("todos os episodios: ", data);
-            console.log("todas as imagens: ", dataImagems);
             setImagensDaTemporada(dataImagems.posters);
             setEpisodiosTitulo(data.episodes);
             setTemporadaInfos(data);

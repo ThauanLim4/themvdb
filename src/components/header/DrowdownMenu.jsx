@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/shadcn/dropdown-menu";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { FaUserCircle } from "react-icons/fa";
 
 
@@ -41,10 +40,8 @@ export const ComponentDropdownMenu = ({ token }) => {
                     throw new Error(response.statusText);
                 }
                 const data = await response.json();
-                console.log("data:", data);
                 if (data) {
                     const usuarioInfos = data.find(us => us.token === token);
-                    console.log("retorno do dropdown:", usuarioInfos)
                     setUserInfos(usuarioInfos);
                 }
             } catch (error) {

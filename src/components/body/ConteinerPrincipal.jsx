@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/effect-fade";
 
-import { GetByGenre, getPopularMovies, GetTrendingMovies, GetTrendingPeople, GetTrendingTv } from '@/utils/api';
+import { getPopularMovies, GetTrendingTv } from '@/utils/api';
 import React, { useState, useEffect } from 'react';
 import { ComponenteDeFilmes } from "./componentesPrincipais/ComponenteFilmes";
 import { ComponenteAtores } from "./componentesAtores/Atores";
@@ -17,7 +17,6 @@ register();
 
 export const ComponentePrincipal = () => {
     const [filmesPopulares, setFilmesPopulares] = useState([]);
-    const [filmesEmAlta, setFilmesEmAlta] = useState([]);
     const [seriesEmAlta, setSeriesEmAlta] = useState([]);
 
 
@@ -29,13 +28,8 @@ export const ComponentePrincipal = () => {
         pegarFilmesPopulares();
 
         const pegarTudoQueEstaEmAlta = async () => {
-            const filmes = await GetTrendingMovies();
             const series = await GetTrendingTv();
-
-            console.log("filmes em alta", filmes);
-            setFilmesEmAlta(filmes);
             setSeriesEmAlta(series);
-
         }
         pegarTudoQueEstaEmAlta();
     }, []);
@@ -58,16 +52,9 @@ export const ComponentePrincipal = () => {
             </section>
 
             <section>
+                {/* Sessão dos atores */}
                 <ComponenteAtores />
             </section>
-
-            {/* Esta sessão é a que contém as séries em alta da semana. */}
-            {/*             
-            <section>
-                <ComponenteDeFilmes valor={filmesEmAlta} nomeDaSessao={"Filmes em alta da semana"} />
-            </section> */}
-
-
         </div>
     )
 }
