@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { TokenContext } from '@/context/token';
 
 export const ComponenteDeFilmes = ({ valor, nomeDaSessao }) => {
-    const btnClasses = "max-sm:hidden max-md:hidden absolute top-2/4 w-24 h-24 p-3 rounded-lg bg-transparent items-center justify-center flex border-2 border-laranja shadow-lg hover:bg-laranja text-branco hover:text-preto_escuro duration-300 cursor-pointer active:scale-[0.98] z-10";
+    const btnClasses = "max-sm:hidden max-md:hidden absolute top-2/4 w-10 h-10 p-3 rounded-lg bg-laranja items-center justify-center flex border-2 border-laranja shadow-lg hover:bg-transparent text-preto_escuro hover:text-laranja duration-300 cursor-pointer active:scale-[0.98] z-10";
     const token = useContext(TokenContext);
 
     const [usuarioInfos, setUsuariosInfos] = useState([])

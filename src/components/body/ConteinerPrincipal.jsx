@@ -11,6 +11,7 @@ import React, { useState, useEffect } from 'react';
 import { ComponenteDeFilmes } from "./componentesPrincipais/ComponenteFilmes";
 import { ComponenteAtores } from "./componentesAtores/Atores";
 import { ComponenteGenerosDeFilmes } from "./componentesPrincipais/Generos";
+import { Banner } from "./banner/Banner";
 
 
 register();
@@ -36,6 +37,10 @@ export const ComponentePrincipal = () => {
 
     return (
         <div>
+            <section>
+                <Banner />
+            </section>
+
             <section>
                 {/* Componente de gêneros de filmes */}
                 <ComponenteGenerosDeFilmes />

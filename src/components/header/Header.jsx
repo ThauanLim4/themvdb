@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useContext, useState } from "react";
-import Logo from "../../img/logo.png";
+import Logo from "@/../public/logo.png";
 import { IoIosSearch } from "react-icons/io";
 import { TokenContext } from "@/context/token";
 import { ComponentDropdownMenu } from "./DrowdownMenu";
